@@ -8,3 +8,27 @@
     border-top: 1px solid black;
     
 }
+
+.faves {
+    min-height: 75px;
+    background-color: rgba(223, 236, 241, 0.89);
+    opacity: 70%;
+    cursor: pointer;
+    
+}
+
+.img-container {
+    padding: 5px 0;
+}
+
+.dalailamabackground {
+    background-image: url(../images/DalaiLama.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:80%;
+}
+
+.twittername {
+    color: gray;
+}

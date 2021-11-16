@@ -4,15 +4,30 @@ import "./Favorites.css";
 function Favorites() {
     return (
         <div className = "body">
-            <div className = "container">
-                <div className = "row">
-                    <div className =  "col-4">
-                        
+            <div className = "row h-100">
+                <div className =  "col-4">
+                    <h3 className = "pt-5">My Faves</h3>
+                    <h6 className = "pt-3 pl-3">Click on a user to display a random tweet!</h6>
+                    
+                    <div className = "container faves rounded-2 border border-light ml-2 mr-2">
+                        <div className = "row">
+                            <div className = "col-4 img-container">
+                                <div className = "container dalailamabackground border rounded-2 border-light">
+                                </div>
+                            </div>
+                            <div className = "col-7">
+                                <h6>Dalai Lama</h6>
+                                <p className = "twittername">@DalaiLama</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+                
+                 
         </div>
+             
+        
     );
 }
 

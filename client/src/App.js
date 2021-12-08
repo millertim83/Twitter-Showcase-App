@@ -12,7 +12,6 @@ function App () {
         <Route path = "/" exact component = {() => <Home />} />
         <Route path = "/Search" exact component = {() => <Search />} />
         <Route path = "/Favorites" exact component = {() => <Favorites />} />
-        <Route path = "/TweetCard" exact component = {() => <TweetCard />} />
       </Switch>
       </div>
     </Router>

@@ -38,14 +38,7 @@ function Nav(props) {
                                     Favorites
                                 </Link>
                             </li>
-                            <li
-                                className = {`nav-item ${props.location.pathname === "/TweetCard" ? "active" : ""
-                                }`}
-                            >
-                                <Link className = "nav-link" to = "/TweetCard">
-                                    Tweet
-                                </Link>
-                            </li>
+                        
                         </ul>
                     </div>
                 </div>

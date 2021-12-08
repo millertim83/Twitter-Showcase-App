@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import "./Search.css";
 
 const Search = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    
+
+    
+
+    /*const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
@@ -11,15 +15,16 @@ const Search = () => {
     }, []);
 
     const searchTweets = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
         console.log('searchTweets function is running.');
 
         const searchTerm = 'elonmusk';
-        axios.get(`/api/tweets/?search_term=${searchTerm}`).then((response) => {
+        axios.get(`https://api.twitter.com/2/tweets/search/recent?query=${searchTerm}`).then((response) => {
             setSearchResults(response.data.statuses);
             console.log('search response: ', response);
         });
     };
+    */
 
 
 

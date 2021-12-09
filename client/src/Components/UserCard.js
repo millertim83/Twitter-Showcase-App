@@ -33,15 +33,19 @@ export default function UserCard({userInfo})  {
                             </img>
                         </div>
                         
-                        <div className="col-8">  
-                            <span>{userData.data.name} {userData.data.verified === true ? 'check' : null} </span>
+                        <div className="col-8 text-center">  
+                            <span>{userData.data.name} {userData.data.verified === true ? '*' : null} </span>
+                            <p className = "text-center text-light">{`@${userData.data.username}`}</p>
                         </div> 
-                        <div className="row">
-                            <p className = "text-light">{`@${userData.data.username}`}</p>
-                        </div>
                 </div>
                 <div className="row">
                     <p>{userData.data.description}</p>
+                </div>
+                <div className="row">
+                    <div className="col-12 text-center">
+                        <span id="location">{`!`} {userData.data.location} </span>
+                        <p id="join">{`# Joined`} {userData.data.created_at}</p>
+                    </div>
                 </div>
                 
             </div>

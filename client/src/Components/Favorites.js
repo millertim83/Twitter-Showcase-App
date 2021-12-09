@@ -117,15 +117,12 @@ function Favorites() {
         setCurrentTweet(randomTweet);    
     };
 
-    function getFavesInfo() {
-        console.log(dalaiInfo, sadhInfo, eckhartInfo, head_spaceInfo, deepakInfo);
-    }
+   
 
     return (
         <div className = "body">
             <div className = "row h-100">
                 <div className =  "col-4">
-                    <button onClick = {() => {getFavesInfo()}}>Get Faves Info</button>
                     <h3 className = "pt-5">My Faves</h3>
                     <h6 className = "pt-3 pl-3">Click on a user to display a random tweet!</h6>
                     

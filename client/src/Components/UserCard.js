@@ -47,6 +47,14 @@ export default function UserCard({userInfo})  {
                         <p id="join">{`# Joined`} {userData.data.created_at}</p>
                     </div>
                 </div>
+                <div className="row justify-content-around">
+                    <div className="col-5">
+                        {`Followers: ${userData.data.public_metrics.followers_count}`}
+                    </div> 
+                    <div className="col-5"> 
+                        {`Following: ${userData.data.public_metrics.following_count}`}
+                    </div>
+                </div>
                 
             </div>
     )

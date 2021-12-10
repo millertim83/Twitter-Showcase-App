@@ -32,7 +32,7 @@ const getToken = async () => {
         console.log('token: ', response.data.access_token);
     } catch (err) {
         console.log(err);
-    }
+        }
 
     
     try {
@@ -105,5 +105,6 @@ const muskTimeline = {
     }
 }
 
+//https://api.twitter.com/2/users/by/username/deepakchopra?user.fields=location,created_at,profile_image_url,verified,public_metrics,description
 
 

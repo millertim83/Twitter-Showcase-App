@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Favorites.css";
 import UserCard from "./UserCard";
+import FavoritesModal from "./FavoritesModal";
 
 
 
 function Favorites() {
-    
-
     let dalaiInfo = {
         "data": {
             "verified": true,
@@ -102,22 +101,54 @@ function Favorites() {
     };
 
     
-    const [dalaiLamaInfo, setDalaiLamaInfo] = useState(dalaiInfo.data);
-    const [sadhGuruInfo, setSadhGuruInfo] = useState(sadhInfo.data);
-    const [eckhartTolleInfo, setEckhartTolleInfo] = useState(eckhartInfo.data);
-    const [headspaceInfo, setHeadspaceInfo] = useState(head_spaceInfo.data);
-    const [deepakChopraInfo, setDeepakChopraInfo] = useState(deepakInfo.data);
+    const [dalaiLamaInfo, setDalaiLamaInfo] = useState("");
+    const [sadhGuruInfo, setSadhGuruInfo] = useState("");
+    const [eckhartTolleInfo, setEckhartTolleInfo] = useState("");
+    const [headspaceInfo, setHeadspaceInfo] = useState("");
+    const [deepakChopraInfo, setDeepakChopraInfo] = useState("");
     
     const [currentTweet, setCurrentTweet] = useState();
+
+    useEffect(() => {
+        retrieveData()
+    }, []);
+
+    function retrieveData() {
+        getDalaiInfo();
+        getSadhInfo();
+        getEckhartInfo();
+        getheadspaceInfo();
+        getdeepakInfo();
+    }
 
     function getRandomTweet(timeline) {
         let randomTimelineIndex = Math.floor(Math.random() * 10);
         let randomTweet = timeline.data[randomTimelineIndex].text;
-        //console.log(`random tweet: ' ${randomTweet}`);
         setCurrentTweet(randomTweet);    
     };
 
-   
+    function getDalaiInfo() {
+        setDalaiLamaInfo(dalaiInfo);
+        console.log(dalaiLamaInfo.data);
+    }
+
+    function getSadhInfo() {
+        setSadhGuruInfo(sadhInfo);
+    }
+
+    function getEckhartInfo() {
+        setEckhartTolleInfo(eckhartInfo);
+    }
+
+    function getheadspaceInfo() {
+        setHeadspaceInfo(head_spaceInfo);
+    }
+
+    function getdeepakInfo() {
+        setDeepakChopraInfo(deepakInfo);
+    }
+
+    
 
     return (
         <div className = "body">
@@ -126,18 +157,31 @@ function Favorites() {
                     <h3 className = "pt-5">My Faves</h3>
                     <h6 className = "pt-3 pl-3">Click on a user to display a random tweet!</h6>
                     
-                    <div className = "container faves rounded-2 border border-light ml-2 mr-2"
-                        onClick = {() => {getRandomTweet(timeline)}}
-                        >
-                            <div>
-                                <UserCard userInfo={dalaiLamaInfo} />
-                            </div>
-                            
-                            
-                            
-
-                        
-                    </div>
+                    <div className="container"
+                        onClick = {() => {getRandomTweet(timeline)}}>
+                        <UserCard userInfo={dalaiInfo} />
+                    </div> 
+                    
+                    <div className="container"
+                        onClick = {() => {getRandomTweet(timeline)}}>
+                        <UserCard userInfo={sadhInfo} />
+                    </div> 
+                    
+                    <div className="container"
+                        onClick = {() => {getRandomTweet(timeline)}}>
+                        <UserCard userInfo={eckhartInfo} />
+                    </div> 
+                    
+                    <div className="container"
+                        onClick = {() => {getRandomTweet(timeline)}}>
+                        <UserCard userInfo={head_spaceInfo} />
+                    </div> 
+                    
+                    <div className="container"
+                        onClick = {() => {getRandomTweet(timeline)}}>
+                        <UserCard userInfo={deepakInfo} />
+                    </div> 
+                    
                 </div>
                 <div className = "col-8">
                     <div className = "container-sm mt-4 bg-white border tweet-container">
@@ -156,18 +200,6 @@ function Favorites() {
 
 export default Favorites;
 
-
-/*<div className = "row">
-                            <div className = "col-4 img-container">
-                                <div className = "container dalailamabackground border rounded-2 border-light">
-                                </div>
-                            </div>
-                            <div className = "col-7">
-                                <h6>Dalai Lama</h6>
-                                <p className = "twittername">@DalaiLama</p>
-                            </div>
-                        </div>
-                        */
 
 const timeline = {
     "data": [
@@ -219,18 +251,3 @@ const timeline = {
         "next_token": "7140dibdnow9c7btw3z2vfguwoevhida86ky2bafkt0kw"
     }
 };
-
-
-/*<div>
-                                <UserCard userInfo={sadhGuruInfo} />
-                            </div>
-                            <div>
-                                <UserCard userInfo={eckhartTolleInfo} />
-                            </div>
-                            <div>
-                                <UserCard userInfo={headspaceInfo} />
-                            </div>
-                            <div>
-                                <UserCard userInfo={deepakChopraInfo} />
-                            </div>
-                            */

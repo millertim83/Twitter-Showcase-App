@@ -6,28 +6,9 @@
     background-size: cover;
     text-align: center;
     border-top: 1px solid black;
-    
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
-.faves {
-    min-height: 75px;
-    background-color: rgba(223, 236, 241, 0.89);
-    cursor: pointer;
-    
-}
 
-.img-container {
-    padding: 5px 0;
-}
 
-.dalailamabackground {
-    background-image: url(../images/DalaiLama.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height:80%;
-}
-
-.twittername {
-    color: gray;
-}

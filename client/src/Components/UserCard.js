@@ -1,10 +1,12 @@
 import React from "react";
+import "./UserCard.css";
 
 
 export default function UserCard({userInfo})  {
     let userData = userInfo;
     
     return (
+        userInfo && (
             <div id="user-card" className="container bg-white border border-dark rounded-2 h-20 m-3 p-3">
                 <div className="row">
                         <div className="col-4">
@@ -20,8 +22,8 @@ export default function UserCard({userInfo})  {
                             <p className = "text-center text-secondary">{`@${userData.data.username}`}</p>
                         </div> 
                 </div>
-                <div className="row">
-                    <p className="fs-6 fw-lighter">{userData.data.description}</p>
+                <div id="description-row" className="row">
+                    <p id="user-description">{userData.data.description}</p>
                 </div>
                 <div className="row">
                     <div className="col-12 text-center">
@@ -30,15 +32,16 @@ export default function UserCard({userInfo})  {
                     </div>
                 </div>
                 <div className="row justify-content-around">
-                    <div className="col-5">
+                    <div id="followers" className="col-5">
                         {`Followers: ${userData.data.public_metrics.followers_count}`}
                     </div> 
-                    <div className="col-5"> 
+                    <div id="following" className="col-5"> 
                         {`Following: ${userData.data.public_metrics.following_count}`}
                     </div>
                 </div>
                 
             </div>
+        )
     )
 }
 

@@ -1,0 +1,28 @@
+#user-description {
+    font-size: x-small;
+}
+
+#description-row {
+   height: 50px;
+}
+
+#user-card {
+    min-width: 300px;
+    max-width: 350px;
+}
+
+#join {
+    font-size: x-small;
+}
+
+#location {
+    font-size: x-small;
+}
+
+#following {
+    font-size: x-small;
+}
+
+#followers {
+    font-size: x-small;
+}

@@ -17,6 +17,9 @@ export default function FavoritesModal ({show, onClose, tweetTimeline}) {
                     alt={tweet.includes.users.name}>
 
                 </img>
+                <div>
+                    <p>{tweet.data[0].text}</p>
+                </div>
             </div>
             <button onClick={onClose}>Close</button>
         </div>

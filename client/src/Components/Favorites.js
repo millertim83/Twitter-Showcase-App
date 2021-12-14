@@ -245,17 +245,12 @@ function Favorites() {
     //End temporary hardcoded data
     
     const [dalaiLamaInfo, setDalaiLamaInfo] = useState("");
-    const [dalaiTweet, setDalaiTweet] = useState("");
     const [sadhGuruInfo, setSadhGuruInfo] = useState("");
-    const [sadhTweet, setSadhTweet] = useState("");
     const [eckhartTolleInfo, setEckhartTolleInfo] = useState("");
-    const [eckhartTweet, setEckhartTweet] = useState("");
     const [headspaceInfo, setHeadspaceInfo] = useState("");
-    const [headspaceTweet, setHeadspaceTweet] = useState("");
     const [deepakChopraInfo, setDeepakChopraInfo] = useState("");
-    const [deepakTweet, setDeepakTweet] = useState("");
     
-    const [currentTweet, setCurrentTweet] = useState();
+    const [tweetTimeline, setTweetTimeline] = useState();
     const [show, setShow] = useState(false);
 
     useEffect(() => {
@@ -278,7 +273,6 @@ function Favorites() {
 
     function getDalaiInfo() {
         setDalaiLamaInfo(dalaiInfo);
-        console.log(dalaiLamaInfo.data);
     }
 
     function getSadhInfo() {
@@ -297,12 +291,20 @@ function Favorites() {
         setDeepakChopraInfo(deepakInfo);
     }
 
-    function getDalaiTweet() {
-        setDalaiTweet (dalaiTimeline);
+    function getRandomTweet(tweetTimeline) {
         let randomTimelineIndex = Math.floor(Math.random() * 10);
-        let randomTweet = dalaiTimeline.data[randomTimelineIndex];
-        setCurrentTweet(randomTweet);
+        let randomTweet = tweetTimeline.data[randomTimelineIndex];
+        return randomTweet;
     }
+
+    function getDalaiTweet() {
+        setTweetTimeline (dalaiTimeline);
+        //getRandomTweet(tweetTimeline);
+        //console.log(getRandomTweet());
+        
+    }
+
+    
 
     
 
@@ -341,7 +343,7 @@ function Favorites() {
                 
                 <div>
                     <FavoritesModal onClose={() => setShow(false)} show={show} 
-                        tweetTimeline={dalaiTweet} />
+                        tweetTimeline={tweetTimeline} />
                 </div>
             </div>
                 

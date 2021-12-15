@@ -13,6 +13,11 @@
 #modal {
     z-index: 1000;
     position: absolute;
+    top: 50%;
+    min-width: 50%;
+    max-width: 90%;
+    margin: auto;
+    
 }
 
 

@@ -949,10 +949,6 @@ function Favorites() {
         setTweetTimeline(deepakTimeline);
     }
 
-    
-
-    
-
     return (
         <div className = "body">
             <div className = "row h-100">
@@ -986,8 +982,10 @@ function Favorites() {
                     </div> 
                 </div>   
                 
-                <div id="modal">
-                    <FavoritesModal onClose={() => setShow(false)} show={show} 
+                <div id="modal" className="container container-sm">
+                    <FavoritesModal 
+                        onClose={() => setShow(false)} 
+                        show={show} 
                         tweetTimeline={tweetTimeline} />
                 </div>
             </div>

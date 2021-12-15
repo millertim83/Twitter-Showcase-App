@@ -1,4 +1,5 @@
 import React from "react";
+import "./FavoritesModal.css";
 
 export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
     let tweet = tweetTimeline;

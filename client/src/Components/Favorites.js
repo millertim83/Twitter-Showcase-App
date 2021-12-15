@@ -6,7 +6,7 @@ import FavoritesModal from "./FavoritesModal";
 
 
 function Favorites() {
-    //Temporary hardcoded data to be removed later
+//Temporary hardcoded data to be removed later
     
     let dalaiInfo = {
         "data": {
@@ -872,9 +872,7 @@ function Favorites() {
             "next_token": "7140dibdnow9c7btw3z3b270esf6skfvf5q2lg68z80mo"
         }
     }
-
-
-    //End temporary hardcoded data
+//End temporary hardcoded data
     
     const [dalaiLamaInfo, setDalaiLamaInfo] = useState("");
     const [sadhGuruInfo, setSadhGuruInfo] = useState("");
@@ -988,7 +986,7 @@ function Favorites() {
                     </div> 
                 </div>   
                 
-                <div>
+                <div id="modal">
                     <FavoritesModal onClose={() => setShow(false)} show={show} 
                         tweetTimeline={tweetTimeline} />
                 </div>

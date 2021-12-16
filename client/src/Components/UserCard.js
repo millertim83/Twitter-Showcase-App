@@ -1,13 +1,15 @@
 import React from "react";
 import "./UserCard.css";
-
+import check from "../images/check.png";
+import pin from "../images/pin.png";
+import calendar from "../images/calendar.png";
 
 export default function UserCard({userInfo})  {
     let userData = userInfo;
     
     return (
         userInfo && (
-            <div id="user-card" className="container bg-white border border-dark rounded-2 h-20 m-3 p-3">
+            <div id="user-card" className="container bg-white h-20 m-3 p-3">
                 <div className="row">
                         <div className="col-4">
                             <img id="profile-pic" 
@@ -18,7 +20,7 @@ export default function UserCard({userInfo})  {
                         </div>
                         
                         <div className="col-8 text-center">  
-                            <span>{userData.data.name} {userData.data.verified === true ? '*' : null} </span>
+                            <span>{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </span>
                             <p className = "text-center text-secondary">{`@${userData.data.username}`}</p>
                         </div> 
                 </div>
@@ -27,8 +29,8 @@ export default function UserCard({userInfo})  {
                 </div>
                 <div className="row">
                     <div className="col-12 text-center">
-                        <span id="location">{`!`} {userData.data.location} </span>
-                        <p id="join">{`# Joined`} {userData.data.created_at}</p>
+                        <span id="location">{userData.data.location ? <img id="pin" src={pin} /> : null } {userData.data.location} </span>
+                        <p id="join">{<img id="calendar" src={calendar}/>} {userData.data.created_at}</p>
                     </div>
                 </div>
                 <div className="row justify-content-around">

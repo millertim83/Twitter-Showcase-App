@@ -1,5 +1,7 @@
 import React from "react";
 import "./FavoritesModal.css";
+import check from "../images/check.png";
+
 
 export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
     let tweet = tweetTimeline;
@@ -24,7 +26,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                 <div className="col-9">
                     <div className="row">
                         <div className="col-12">
-                            <p>{tweet.includes.users[0].name}</p>
+                            <p>{tweet.includes.users[0].name} {tweet.includes.users[0].verified === true ? <img id="check" src={check}/> : null}</p>
                         </div>
                     </div>
                     <div className="row">

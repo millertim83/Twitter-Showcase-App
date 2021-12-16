@@ -11,20 +11,22 @@ export default function UserCard({userInfo})  {
         userInfo && (
             <div id="user-card" className="container bg-white h-20 m-3 p-3">
                 <div className="row">
-                        <div className="col-4">
+                        <div className="col-2">
                             <img id="profile-pic" 
-                                className="rounded-circle responsive-img" 
+                                className="rounded-circle responsive-img align-middle" 
                                 src={userData.data.profile_image_url} 
                                 alt={userData.data.name}>
                             </img>
                         </div>
                         
-                        <div className="col-8 text-center">  
-                            <span>{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </span>
-                            <p className = "text-center text-secondary">{`@${userData.data.username}`}</p>
+                        <div className="col-5 text-center align-text-bottom">  
+                            <p id="name">{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </p>  
                         </div> 
+                        <div className="col-5 text-center align-text-bottom">
+                            <p id="username" className="text-secondary">{`@${userData.data.username}`}</p>
+                        </div>
                 </div>
-                <div id="description-row" className="row">
+                <div id="description" className="row">
                     <p id="user-description">{userData.data.description}</p>
                 </div>
                 <div className="row">

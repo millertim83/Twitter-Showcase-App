@@ -11,7 +11,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
     
     
     if (!show) {
-        return null
+        return null;
     }
     
     return (

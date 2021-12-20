@@ -1,11 +1,16 @@
 import React from "react";
 import "./TweetCard.css";
+import check from "../images/check.png";
+import heart from "../images/heart.png";
+import retweet from "../images/retweet.png";
 
-export default function Tweet({ show, onClose, tweetResults, userResults }) {
-    let tweets=tweetResults;
-    let users=userResults;
+export default function TweetCard({ show, onClose }) {
+    //let tweets=tweetResults;
+    //let users=userResults;
 
-    const dogSearch = {
+    
+    
+    let dogSearch = {
         "data": [
             {
                 "id": "1472252603849494538",
@@ -190,25 +195,62 @@ export default function Tweet({ show, onClose, tweetResults, userResults }) {
         }
     }
 
+    let tweets=dogSearch.data;
+    let users=dogSearch.includes.users;
+    
     if (!show) {
         return null;
     }
     
     return (
-        <div className = "card" style="width: 18rem border;">
-            <div className = "card-body">
-                <p>Hello</p>
+        <div id="tweet-modal" className="container border border-dark">
+            <div className="row">
+                <div className="col-2">
+                    <img id="profile-pic"
+                        className="rounded-circle responsive-img"
+                        src={dogSearch.includes.users[0].profile_image_url}
+                        alt={dogSearch.includes.users[0].name}>
+                    </img>
+                </div>
+                <div id="name" className="col-3">
+                    <p>{dogSearch.includes.users[0].name} {dogSearch.includes.users[0].verified === true ? <img id="check" src={check}/> : null}</p>
+                </div>  
+                <div className="col-3">
+                    <p id="username">{ `@${dogSearch.includes.users[0].username}` }</p>
+                </div>
+                <div className="col-4">
+                    <p id="date">{dogSearch.data[0].created_at}</p>
+                </div>
+                
+            </div>
+            <div className="row">
+                <div className="col-2">
+
+                </div>
+                <div className="col-10 text-start">
+                    <p className="text-sm-start">{dogSearch.data[0].text}</p>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-6">
+                    <p>{<img id="heart" src={heart} alt="likes:" />} {dogSearch.data[0].public_metrics.like_count}</p>
+                </div>
+                <div className="col-6">
+                    <p>{<img id="retweet" src={retweet} alt="retweets:" />} {dogSearch.data[0].public_metrics.retweet_count}</p>
+                </div>
+            </div>
                 
                 <button onClick={onClose}>Close</button>
 
 
             </div>
-
             
             
                 
             
-        </div>
+        
     );
 }
 
+
+            

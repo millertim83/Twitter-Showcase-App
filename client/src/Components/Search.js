@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import "./Search.css";
 import TweetCard from "./TweetCard.js";
 
-const Search = () => {
+function Search()  {
     
-const [searchTerm, setSearchTerm] = useState('');
-const [tweetResults, setTweetResults] = useState([]);
-const [userResults, setUserResults] = useState([]);
+const [searchTerm, setSearchTerm] = useState("");
+//const [tweetResults, setTweetResults] = useState([]);
+//const [userResults, setUserResults] = useState([]);
 const [show, setShow] = useState(false);
 
     /*useEffect(() => {
@@ -29,7 +29,7 @@ const [show, setShow] = useState(false);
 
 
 
-    const dogSearch = {
+    /*const dogSearch = {
         "data": [
             {
                 "id": "1472252603849494538",
@@ -212,14 +212,15 @@ const [show, setShow] = useState(false);
             "result_count": 10,
             "next_token": "b26v89c19zqg8o3fpe166hhkwoq068kqwza0oy6zzw6f1"
         }
-    }
+    }*/
 
-    const searchTweets = (e) => {
-        setTweetResults(dogSearch.data.slice(0, 5));
-        setUserResults(dogSearch.includes.users.slice(0, 5));
-        console.log(tweetResults);
-        console.log(userResults);
-    }
+    /*function searchTweets()  {
+        setShow(true);
+        //setTweetResults(dogSearch.data.slice(0, 5));
+        //setUserResults(dogSearch.includes.users.slice(0, 5));
+        //console.log(`Tweet results: ${tweetResults}`);
+        //console.log(`User results: ${userResults}`);
+    }*/
     
 
 
@@ -231,27 +232,17 @@ const [show, setShow] = useState(false);
                     <div className = "col-12 text-center">
                         <h1>Search</h1>
                         <p>Search by username or tweet content.</p>
-                        <form className="text-center form-control-lg">
-                            <input
-                                required
-                                //value={searchTerm}
-                                type="text"
-                                placeholder="Enter search here.."
-                                className="form-control-sm"
-                                onChange={searchTweets}
-                            >
-                            </input>
-                            <button type="submit" className="btn btn-warning">Search</button>
                         
-                        </form>
                     </div>
+                    <div>
+                        <button onClick = {() => { setShow(true)  }}>Search</button>
+                    </div>
+                    
                     <div id="modal" className="container container-sm">
-                    <TweetCard 
-                        onClose={() => setShow(false)} 
-                        show={show} 
-                        tweetResults={tweetResults}
-                        userResults={userResults} />
-                </div>
+                        <TweetCard 
+                            onClose={() => setShow(false)} 
+                            show={show} />
+                    </div>
                 </div>
             </div>
         </div>
@@ -259,3 +250,20 @@ const [show, setShow] = useState(false);
 }
 
 export default Search;
+
+//tweetResults={tweetResults}
+//userResults={userResults}
+
+/*<form className="text-center form-control-lg">
+                            <input
+                                //required
+                                value={searchTerm}
+                                type="text"
+                                placeholder="Enter search here.."
+                                className="form-control-sm"
+                                //onSubmit={setShow(true)}
+                            >
+                            </input>
+                            <button type="submit" className="btn btn-warning" >Search</button>
+                        
+                        </form>*/

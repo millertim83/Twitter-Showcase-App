@@ -918,6 +918,7 @@ function Favorites() {
     const [tweetTimeline, setTweetTimeline] = useState();
     const [show, setShow] = useState(false);
 
+    const randomIndex = Math.floor(Math.random() * 10);
     
 
     useEffect(() => {
@@ -931,12 +932,6 @@ function Favorites() {
         getheadspaceInfo();
         getdeepakInfo();
     }
-
-    /*function getRandomTweet(timeline) {
-        let randomTimelineIndex = Math.floor(Math.random() * 10);
-        let randomTweet = timeline.data[randomTimelineIndex].text;
-        setCurrentTweet(randomTweet);    
-    };*/
 
     function getDalaiInfo() {
         setDalaiLamaInfo(dalaiInfo);
@@ -957,12 +952,6 @@ function Favorites() {
     function getdeepakInfo() {
         setDeepakChopraInfo(deepakInfo);
     }
-
-    /*function getRandomTweet(tweetTimeline) {
-        let randomTimelineIndex = Math.floor(Math.random() * 10);
-        let randomTweet = tweetTimeline.data[randomTimelineIndex];
-        return randomTweet;
-    }*/
 
     function getDalaiTweet() {
         setTweetTimeline (dalaiTimeline);
@@ -1018,7 +1007,8 @@ function Favorites() {
                 </div>   
                 
                 <div id="modal" className="container container-sm">
-                    <FavoritesModal 
+                    <FavoritesModal
+                        randomIndex={randomIndex} 
                         onClose={() => setShow(false)} 
                         show={show} 
                         tweetTimeline={tweetTimeline} />

@@ -7,7 +7,7 @@ import retweet from "../images/retweet.png";
 
 export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
     let tweet = tweetTimeline;
-    //const randomIndex = Math.floor(Math.random() * 10);
+    let index = randomIndex;
     
     
     if (!show) {
@@ -15,15 +15,16 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
     }
     
     return (
-        tweetTimeline && (
+        tweetTimeline && randomIndex && (
         <div id="favorites-modal" className="container border border-dark">
             <div className="row">
                 <div className="col-2">
                     <img id="profile-pic"
                         className="rounded-circle responsive-img"
                         src={tweet.includes.users[0].profile_image_url}
-                        alt={tweet.includes.users.name}>
+                        alt={tweet.includes.users[0].name}>
                     </img>
+                    <p>{index}</p>
                 </div>
                 <div id="name" className="col-3">
                     <p>{tweet.includes.users[0].name} {tweet.includes.users[0].verified === true ? <img id="check" src={check}/> : null}</p>

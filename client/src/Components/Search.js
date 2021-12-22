@@ -29,7 +29,7 @@ const [show, setShow] = useState(false);
 
 
 
-    /*const dogSearch = {
+    const dogSearch = {
         "data": [
             {
                 "id": "1472252603849494538",
@@ -212,7 +212,10 @@ const [show, setShow] = useState(false);
             "result_count": 10,
             "next_token": "b26v89c19zqg8o3fpe166hhkwoq068kqwza0oy6zzw6f1"
         }
-    }*/
+    }
+
+    let tweets=dogSearch.data;
+    let users=dogSearch.includes.users;
 
     /*function searchTweets()  {
         setShow(true);
@@ -241,7 +244,9 @@ const [show, setShow] = useState(false);
                     <div id="modal" className="container container-sm">
                         <TweetCard 
                             onClose={() => setShow(false)} 
-                            show={show} />
+                            show={show}
+                            tweets={tweets}
+                            users={users} />
                     </div>
                 </div>
             </div>

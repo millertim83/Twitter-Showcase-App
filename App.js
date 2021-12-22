@@ -1,7 +1,7 @@
 const { default: axios } = require('axios');
 const express = require('express');
 const path = require('path');
-const port = 3001;
+const port = 3000;
 const app = express();
 require('dotenv').config();
 

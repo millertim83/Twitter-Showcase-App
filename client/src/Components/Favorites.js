@@ -2,108 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./Favorites.css";
 import UserCard from "./UserCard";
 import FavoritesModal from "./FavoritesModal";
+import axios from "axios";
+import res from "express/lib/response";
 
 
 
 function Favorites() {
 //Temporary hardcoded data to be removed later
     
-    let dalaiInfo = {
-        "data": {
-            "verified": true,
-            "location": "Dharamsala, India",
-            "public_metrics": {
-                "followers_count": 19222760,
-                "following_count": 0,
-                "tweet_count": 1744,
-                "listed_count": 73647
-            },
-            "profile_image_url": "https://pbs.twimg.com/profile_images/529214699041067008/fqPBAr5s_normal.jpeg",
-            "name": "Dalai Lama",
-            "created_at": "2009-02-11T18:34:22.000Z",
-            "id": "20609518",
-            "description": "Welcome to the official twitter page of the Office of His Holiness the 14th Dalai Lama.",
-            "username": "DalaiLama"
-        }
-    };
-
-    let sadhInfo = {
-        "data": {
-            "created_at": "2009-08-21T13:49:35.000Z",
-            "verified": true,
-            "profile_image_url": "https://pbs.twimg.com/profile_images/1132191777195085824/KbxIQUxJ_normal.png",
-            "username": "SadhguruJV",
-            "description": "A Yogi, Mystic & Visionary. This account is managed by volunteers @Ishafoundation. Tweets from Sadhguru himself are signed - Sg",
-            "id": "67611162",
-            "name": "Sadhguru",
-            "public_metrics": {
-                "followers_count": 3762975,
-                "following_count": 3,
-                "tweet_count": 11507,
-                "listed_count": 1760
-            },
-            "location": "India"
-        }
-    };
-
-    let eckhartInfo = {
-        "data": {
-            "created_at": "2008-04-29T22:27:32.000Z",
-            "verified": true,
-            "profile_image_url": "https://pbs.twimg.com/profile_images/1308563975119032321/rpNxathB_normal.png",
-            "username": "EckhartTolle",
-            "description": "",
-            "id": "14592008",
-            "name": "Eckhart Tolle",
-            "public_metrics": {
-                "followers_count": 719894,
-                "following_count": 13,
-                "tweet_count": 2071,
-                "listed_count": 7786
-            }
-        }
-    };
-
-    let head_spaceInfo = {
-        "data": {
-            "name": "Headspace",
-            "public_metrics": {
-                "followers_count": 271624,
-                "following_count": 1603,
-                "tweet_count": 52056,
-                "listed_count": 2220
-            },
-            "description": "Your guide to health and happiness. \nLearn to meditate and live mindfully.\nNeed help? Send us a message @HeadspaceHelp\nhttps://t.co/xPRbzJPs4A",
-            "verified": true,
-            "profile_image_url": "https://pbs.twimg.com/profile_images/1157021554280058880/yWiCuBSR_normal.jpg",
-            "username": "Headspace",
-            "location": "Los Angeles | London",
-            "created_at": "2011-10-31T12:52:24.000Z",
-            "id": "402025521"
-        }
-    };
-
-    let deepakInfo = {
-        "data": {
-            "description": "Founder of @chopraglobal @ChopraFNDN #Metahuman #DailyBreath #digitaldeepak #Neveralone Get your copy of #TotalMeditation through my website👇",
-            "username": "DeepakChopra",
-            "location": "Global",
-            "name": "Deepak Chopra",
-            "public_metrics": {
-                "followers_count": 3206078,
-                "following_count": 790,
-                "tweet_count": 81619,
-                "listed_count": 26433
-            },
-            "created_at": "2008-07-24T20:41:29.000Z",
-            "id": "15588657",
-            "verified": true,
-            "profile_image_url": "https://pbs.twimg.com/profile_images/1244678658951909381/TabEMtZk_normal.jpg"
-        }
-    };
-
-
-    const dalaiTimeline = {
+const dalaiTimeline = {
         "data": [
             {
                 "text": "If the education system fostered inner peace, compassion and non-violence, or the idea of doing no harm, students would learn how to achieve peace of mind. This is what is required if we are to fulfil the goal of a genuinely peaceful and demilitarized world.",
@@ -933,24 +840,29 @@ function Favorites() {
         getdeepakInfo();
     }
 
-    function getDalaiInfo() {
-        setDalaiLamaInfo(dalaiInfo);
+    async function getDalaiInfo() {
+        await axios.get("/api/dalaiInfo")
+        .then(response => setDalaiLamaInfo(response.data));
     }
 
-    function getSadhInfo() {
-        setSadhGuruInfo(sadhInfo);
+    async function getSadhInfo() {
+        await axios.get("/api/sadhInfo")
+        .then(response => setSadhGuruInfo(response.data));
     }
 
-    function getEckhartInfo() {
-        setEckhartTolleInfo(eckhartInfo);
+    async function getEckhartInfo() {
+        await axios.get("/api/eckhartInfo")
+        .then(response => setEckhartTolleInfo(response.data));
     }
 
-    function getheadspaceInfo() {
-        setHeadspaceInfo(head_spaceInfo);
+    async function getheadspaceInfo() {
+        await axios.get("/api/headspaceInfo")
+        .then(response => setHeadspaceInfo(response.data));
     }
 
-    function getdeepakInfo() {
-        setDeepakChopraInfo(deepakInfo);
+    async function getdeepakInfo() {
+        await axios.get("/api/deepakInfo")
+        .then(response => setDeepakChopraInfo(response.data));
     }
 
     function getDalaiTweet() {

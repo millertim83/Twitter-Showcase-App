@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Nav, Home, Search, Favorites, TweetCard } from "./Components";
+import { Nav, Home, Search, Favorites } from "./Components";
 import "./App.css";
 
 function App () {

@@ -16,6 +16,13 @@ const eckhartInfoEndpoint = "https://api.twitter.com/2/users/by/username/eckhart
 const headspaceEndpoint = "https://api.twitter.com/2/users/by/username/headspace?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
 const deepakEndpoint = "https://api.twitter.com/2/users/by/username/deepakchopra?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
 
+const dalaiTweetsEndpoint = "https://api.twitter.com/2/users/20609518/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
+const sadhTweetsEndpoint = "https://api.twitter.com/2/users/67611162/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
+const eckhartTweetsEndpoint = "https://api.twitter.com/2/users/14592008/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
+const headspaceTweetsEndpoint = "https://api.twitter.com/2/users/402025521/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
+const deepakTweetsEndpoint = "https://api.twitter.com/2/users/15588657/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
+
+
 app.get("/api/dalaiInfo", async(req, res) => {
     let userInfo = "";
     await axios
@@ -72,6 +79,66 @@ app.get("/api/deepakInfo", async(req, res) => {
             userInfo=response.data;
             res.send(userInfo);
             console.log(userInfo);
+        })
+        .catch((error) => console.log(error));
+});
+
+app.get("/api/dalaiTweets", async(req, res) => {
+    let tweetTimeline = "";
+    await axios
+        .get(dalaiTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            tweetTimeline=response.data;
+            res.send(tweetTimeline);
+            console.log(tweetTimeline);
+        })
+        .catch((error) => console.log(error));
+});
+
+app.get("/api/sadhTweets", async(req, res) => {
+    let tweetTimeline = "";
+    await axios
+        .get(sadhTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            tweetTimeline=response.data;
+            res.send(tweetTimeline);
+            console.log(tweetTimeline);
+        })
+        .catch((error) => console.log(error));
+});
+
+app.get("/api/eckhartTweets", async(req, res) => {
+    let tweetTimeline = "";
+    await axios
+        .get(eckhartTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            tweetTimeline=response.data;
+            res.send(tweetTimeline);
+            console.log(tweetTimeline);
+        })
+        .catch((error) => console.log(error));
+});
+
+app.get("/api/deepakTweets", async(req, res) => {
+    let tweetTimeline = "";
+    await axios
+        .get(deepakTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            tweetTimeline=response.data;
+            res.send(tweetTimeline);
+            console.log(tweetTimeline);
+        })
+        .catch((error) => console.log(error));
+});
+
+app.get("/api/headspaceTweets", async(req, res) => {
+    let tweetTimeline = "";
+    await axios
+        .get(headspaceTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            tweetTimeline=response.data;
+            res.send(tweetTimeline);
+            console.log(tweetTimeline);
         })
         .catch((error) => console.log(error));
 });

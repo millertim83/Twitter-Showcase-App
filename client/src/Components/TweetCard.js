@@ -9,8 +9,9 @@ export default function TweetCard({ show, onClose, tweets, users }) {
         return null;
     }
     
+    
     return (
-        <div id="tweet-modal" className="container border border-dark">
+        <div id="tweet-modal" className="container">
             <div className="row">
                 <div className="col-2">
                     <img id="profile-pic"

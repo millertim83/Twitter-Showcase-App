@@ -14,7 +14,7 @@ function Favorites() {
     const [tweetTimeline, setTweetTimeline] = useState("");
     const [show, setShow] = useState(false);
 
-    const randomIndex = Math.floor(Math.random() * 10);
+    let randomIndex = Math.floor(Math.random() * 10);
     
 
     useEffect(() => {
@@ -57,11 +57,13 @@ function Favorites() {
     async function getDalaiTweet() {
         await axios.get("/api/dalaiTweets")
         .then(response => setTweetTimeline (response.data));
+        
     }
 
     async function getSadhTweet() {
         await axios.get("/api/sadhTweets")
         .then(response => setTweetTimeline(response.data));
+        
     }
 
     async function getEckhartTweet() {

@@ -8,8 +8,6 @@ import retweet from "../images/retweet.png";
 export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
     let tweet = tweetTimeline;
     
-    
-    
     if (!show) {
         return null;
     }
@@ -24,7 +22,6 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                         src={tweet.includes.users[0].profile_image_url}
                         alt={tweet.includes.users[0].name}>
                     </img>
-                    <p>{randomIndex}</p>
                 </div>
                 <div id="name" className="col-3">
                     <p>{tweet.includes.users[0].name} {tweet.includes.users[0].verified === true ? <img id="check" src={check}/> : null}</p>
@@ -33,7 +30,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                     <p id="username">{ `@${tweet.includes.users[0].username}` }</p>
                 </div>
                 <div className="col-4">
-                    <p id="date">{tweet.data[0].created_at}</p>
+                    <p id="date">{tweet.data[randomIndex].created_at}</p>
                 </div>
                 
             </div>
@@ -42,15 +39,15 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
 
                 </div>
                 <div className="col-10 text-start">
-                    <p className="text-sm-start">{tweet.data[0].text}</p>
+                    <p className="text-sm-start">{tweet.data[randomIndex].text}</p>
                 </div>
             </div>
             <div className="row">
                 <div className="col-6">
-                    <p>{<img id="heart" src={heart} alt="likes:" />} {tweet.data[0].public_metrics.like_count}</p>
+                    <p>{<img id="heart" src={heart} alt="likes:" />} {tweet.data[randomIndex].public_metrics.like_count}</p>
                 </div>
                 <div className="col-6">
-                    <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet.data[0].public_metrics.retweet_count}</p>
+                    <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet.data[randomIndex].public_metrics.retweet_count}</p>
                 </div>
             </div>
             

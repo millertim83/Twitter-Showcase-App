@@ -7,7 +7,7 @@ function Search()  {
     
 const [searchTerm, setSearchTerm] = useState("");
 //const [tweetResults, setTweetResults] = useState([]);
-//const [userResults, setUserResults] = useState([]);
+const [userSearchResults, setUserSearchResults] = useState("");
 const [show, setShow] = useState(false);
 
 
@@ -15,21 +15,30 @@ const [show, setShow] = useState(false);
         searchTweets();
     }, []);*/
 
-    /*const searchTweets = (e) => {
+   /* async function handleUserSearch(e) {
         e.preventDefault();
-        console.log('searchTweets function is running.');
+        await axios.get(`/api/searchUsers?search=${searchTerm}`)
+        .then(response => setUserSearchResults(response.data));
+        console.log(response.data)
+    }*/
 
-        const searchTerm = 'elonmusk';
-        axios.get(`https://api.twitter.com/2/tweets/search/recent?query=${searchTerm}`).then((response) => {
-            setSearchResults(response.data.statuses);
-            console.log('search response: ', response);
-        });
-    };*/
-
+async function searchUsers() {
+    setShow(true);
+    //handleUserSearch(e);
+    //setSearchTerm("elonmusk");
+    //axios.get(`/api/searchUsers?search=${searchTerm}`)
+    await axios.get("/api/searchUsers")
+    .then(response => setUserSearchResults(response.data));
     
+}
+
+/*const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+}*/
 
 
 
+/*
     const dogSearch = {
         "data": [
             {
@@ -217,17 +226,7 @@ const [show, setShow] = useState(false);
 
     let tweets=dogSearch.data;
     let users=dogSearch.includes.users;
-
-    /*function searchTweets()  {
-        setShow(true);
-        //setTweetResults(dogSearch.data.slice(0, 5));
-        //setUserResults(dogSearch.includes.users.slice(0, 5));
-        //console.log(`Tweet results: ${tweetResults}`);
-        //console.log(`User results: ${userResults}`);
-    }*/
-    
-
-
+    */
 
     return (
         <div className = "body">
@@ -239,15 +238,16 @@ const [show, setShow] = useState(false);
                         
                     </div>
                     <div>
-                        <button onClick = {() => { setShow(true)  }}>Search</button>
+                        <button onClick={searchUsers}>Search by username</button>
                     </div>
+                    
                     
                     <div id="modal" className="container container-sm">
                         <TweetCard 
                             onClose={() => setShow(false)} 
                             show={show}
-                            tweets={tweets}
-                            users={users} />
+                            userSearchResults={userSearchResults}
+                             />
                     </div>
                 </div>
             </div>
@@ -256,20 +256,28 @@ const [show, setShow] = useState(false);
 }
 
 export default Search;
+//<button type="button" className="btn btn-warning" onClick={searchUsers}>Search by user</button>
+
+//tweets={tweets}
+//users={users}
 
 //tweetResults={tweetResults}
 //userResults={userResults}
 
-/*<form className="text-center form-control-lg">
+//<button type="button" className="btn btn-warning" onClick={searchTopics}>Search by topic</button>
+
+//<button onClick = {() => { setShow(true)  }}>Search</button>
+/*                        
+<form className="text-center form-control-lg">
                             <input
-                                //required
-                                value={searchTerm}
+                                //value={searchTerm}
                                 type="text"
                                 placeholder="Enter search here.."
                                 className="form-control-sm"
-                                //onSubmit={setShow(true)}
+                                //onChange={handleChange}
+                                autoFocus
                             >
                             </input>
-                            <button type="submit" className="btn btn-warning" >Search</button>
-                        
-                        </form>*/
+                            
+                        </form>
+                        */

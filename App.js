@@ -22,6 +22,7 @@ const eckhartTweetsEndpoint = "https://api.twitter.com/2/users/14592008/tweets?e
 const headspaceTweetsEndpoint = "https://api.twitter.com/2/users/402025521/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
 const deepakTweetsEndpoint = "https://api.twitter.com/2/users/15588657/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
 
+const searchUsersEndpoint = "https://api.twitter.com/2/users/by/username/elonmusk?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
 
 app.get("/api/dalaiInfo", async(req, res) => {
     let userInfo = "";
@@ -30,7 +31,6 @@ app.get("/api/dalaiInfo", async(req, res) => {
         .then((response) => {
             userInfo=response.data;
             res.send(userInfo);
-            console.log(userInfo);
         })
         .catch((error) => console.log(error));
 });
@@ -42,7 +42,6 @@ app.get("/api/sadhInfo", async(req, res) => {
         .then((response) => {
             userInfo=response.data;
             res.send(userInfo);
-            console.log(userInfo);
         })
         .catch((error) => console.log(error));
 });
@@ -54,7 +53,6 @@ app.get("/api/eckhartInfo", async(req, res) => {
         .then((response) => {
             userInfo=response.data;
             res.send(userInfo);
-            console.log(userInfo);
         })
         .catch((error) => console.log(error));
 });
@@ -66,7 +64,6 @@ app.get("/api/headspaceInfo", async(req, res) => {
         .then((response) => {
             userInfo=response.data;
             res.send(userInfo);
-            console.log(userInfo);
         })
         .catch((error) => console.log(error));
 });
@@ -78,7 +75,6 @@ app.get("/api/deepakInfo", async(req, res) => {
         .then((response) => {
             userInfo=response.data;
             res.send(userInfo);
-            console.log(userInfo);
         })
         .catch((error) => console.log(error));
 });
@@ -90,7 +86,6 @@ app.get("/api/dalaiTweets", async(req, res) => {
         .then((response) => {
             tweetTimeline=response.data;
             res.send(tweetTimeline);
-            console.log(tweetTimeline);
         })
         .catch((error) => console.log(error));
 });
@@ -102,7 +97,6 @@ app.get("/api/sadhTweets", async(req, res) => {
         .then((response) => {
             tweetTimeline=response.data;
             res.send(tweetTimeline);
-            console.log(tweetTimeline);
         })
         .catch((error) => console.log(error));
 });
@@ -114,7 +108,6 @@ app.get("/api/eckhartTweets", async(req, res) => {
         .then((response) => {
             tweetTimeline=response.data;
             res.send(tweetTimeline);
-            console.log(tweetTimeline);
         })
         .catch((error) => console.log(error));
 });
@@ -126,7 +119,6 @@ app.get("/api/deepakTweets", async(req, res) => {
         .then((response) => {
             tweetTimeline=response.data;
             res.send(tweetTimeline);
-            console.log(tweetTimeline);
         })
         .catch((error) => console.log(error));
 });
@@ -138,7 +130,24 @@ app.get("/api/headspaceTweets", async(req, res) => {
         .then((response) => {
             tweetTimeline=response.data;
             res.send(tweetTimeline);
-            console.log(tweetTimeline);
         })
         .catch((error) => console.log(error));
 });
+
+//Search page functions//
+
+app.get("/api/searchUsers", async(req, res) => {
+    let userSearchResults="";
+    await axios
+        .get(searchUsersEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            userSearchResults=response.data;
+            res.send(userSearchResults);
+            console.log(response.data);
+        })
+        .catch((error) => console.log(error));
+});
+
+/*if (response.errors) {
+    res.send("Username not found!")
+}*/

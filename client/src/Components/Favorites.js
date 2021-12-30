@@ -57,13 +57,11 @@ function Favorites() {
     async function getDalaiTweet() {
         await axios.get("/api/dalaiTweets")
         .then(response => setTweetTimeline (response.data));
-        
     }
 
     async function getSadhTweet() {
         await axios.get("/api/sadhTweets")
         .then(response => setTweetTimeline(response.data));
-        
     }
 
     async function getEckhartTweet() {

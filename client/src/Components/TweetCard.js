@@ -17,7 +17,8 @@ export default function TweetCard({ show, onClose, userSearchResults }) {
         userSearchResults && (
         <div>
             <div>
-                <p>{user.data.name}</p>
+                <p>{user.includes.users[0].name}</p>
+                <p>{user.data[0].text}</p>
             </div>
             <button onClick={onClose}>Close</button>
             

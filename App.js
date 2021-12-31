@@ -1,4 +1,5 @@
 const { default: axios } = require('axios');
+const { response } = require('express');
 const express = require('express');
 const path = require('path');
 const port = 3001;
@@ -22,7 +23,7 @@ const eckhartTweetsEndpoint = "https://api.twitter.com/2/users/14592008/tweets?e
 const headspaceTweetsEndpoint = "https://api.twitter.com/2/users/402025521/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
 const deepakTweetsEndpoint = "https://api.twitter.com/2/users/15588657/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
 
-const searchUsersEndpoint = "https://api.twitter.com/2/users/by/username/elonmusk?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
+const userTimelineEndpoint = "https://api.twitter.com/2/users/44196397/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
 
 app.get("/api/dalaiInfo", async(req, res) => {
     let userInfo = "";
@@ -138,15 +139,28 @@ app.get("/api/headspaceTweets", async(req, res) => {
 
 app.get("/api/searchUsers", async(req, res) => {
     let userSearchResults="";
+    const search = req.query.search;
     await axios
-        .get(searchUsersEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+        .get(`https://api.twitter.com/2/users/by/username/${search}`, {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
             userSearchResults=response.data;
             res.send(userSearchResults);
-            console.log(response.data);
         })
         .catch((error) => console.log(error));
 });
+
+app.get("/api/searchUserTimeline", async(req, res) => {
+    let userTimelineResults="";
+    const userID = req.query.ID;
+    await axios
+        .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`, 
+        {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            userTimelineResults=response.data;
+            res.send(userTimelineResults);
+        })
+        .catch((error) => console.log(error));
+})
 
 /*if (response.errors) {
     res.send("Username not found!")

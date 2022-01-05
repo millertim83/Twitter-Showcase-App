@@ -1,5 +1,4 @@
 const { default: axios } = require('axios');
-const { response } = require('express');
 const express = require('express');
 const path = require('path');
 const port = 3001;
@@ -138,7 +137,7 @@ app.get("/api/headspaceTweets", async(req, res) => {
 //Search page functions//
 
 app.get("/api/searchUsers", async(req, res) => {
-    let userSearchResults="";
+    let userSearchResults = "";
     const search = req.query.search;
     await axios
         .get(`https://api.twitter.com/2/users/by/username/${search}`, {headers: { Authorization: `Bearer ${token}`,}})
@@ -150,14 +149,14 @@ app.get("/api/searchUsers", async(req, res) => {
 });
 
 app.get("/api/searchUserTimeline", async(req, res) => {
-    let userTimelineResults="";
+    let tweetResults="";
     const userID = req.query.ID;
     await axios
         .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`, 
         {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            userTimelineResults=response.data;
-            res.send(userTimelineResults);
+            tweetResults=response.data;
+            res.send(tweetResults);
         })
         .catch((error) => console.log(error));
 })

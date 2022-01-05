@@ -4,25 +4,24 @@ import check from "../images/check.png";
 import heart from "../images/heart.png";
 import retweet from "../images/retweet.png";
 
-export default function TweetCard({ show, onClose, userSearchResults }) {
-    let user = userSearchResults;
+export default function TweetCard({ show, onClose, tweetResults, userInfo, tweet }) {
     
+
     if (!show) {
         return null;
     }
     
-
     
     return (
-        userSearchResults && (
-        <div>
+        tweetResults && (
             <div>
-                <p>{user.includes.users[0].name}</p>
-                <p>{user.data[0].text}</p>
-            </div>
-            <button onClick={onClose}>Close</button>
-            
-        </div> 
+                <div className="container border">
+                    <p>{tweet.text}</p>  
+                    <p>{userInfo.username}</p>
+                </div>
+                
+                <button onClick={onClose}>Close</button>  
+            </div> 
         )  
     );
 }

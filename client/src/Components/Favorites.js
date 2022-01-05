@@ -86,7 +86,7 @@ function Favorites() {
                 <h6 className = "pt-3 pl-3">Click on a user to display a random tweet!</h6>
 
                 <div className="d-flex flex-wrap flex-fill">
-                    <div className="container col-sm"
+                    <div className="container col-sm user-card"
                         onClick = {() => { setShow(true); getDalaiTweet() }}>
                         <UserCard userInfo={dalaiLamaInfo} />  
                     </div> 

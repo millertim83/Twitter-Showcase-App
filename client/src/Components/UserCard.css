@@ -9,6 +9,7 @@
 #user-card {
     min-width: 300px;
     max-width: 350px;
+    cursor: pointer;
 }
 
 #join {

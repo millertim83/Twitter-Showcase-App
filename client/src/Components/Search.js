@@ -117,7 +117,8 @@ function Search()  {
             //setShow(true);
         })   
     }
-
+    //hardcoded data
+    /*
     function searchTimelineByID() {
         setUserID("5768872");
         setTweetResults(userSearchResponse.data);
@@ -126,7 +127,20 @@ function Search()  {
         //.then(response => {
         //    setTweetResults(response.data.data);
             setShow(true);
-        //})
+        //})   
+    }
+    */
+
+    //twitter API call
+    async function searchTimelineByID() {
+        setUserID("5768872");
+        setUserInfo(userSearchResponse.includes.users[0]);
+        await axios.get(`/api/searchUserTimeline?ID=${userID}`)
+        .then(response => {
+            setTweetResults(response.data.data);
+            setUserInfo(response.data.includes.users[0]);
+            setShow(true);
+        })
         
     }
 

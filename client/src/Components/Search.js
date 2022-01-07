@@ -9,45 +9,46 @@ function Search()  {
     const [tweetResults, setTweetResults] = useState([]);
     const [userInfo, setUserInfo] = useState({});
     const [show, setShow] = useState(false);
-    const [userID, setUserID] = useState("");
-
-    useEffect(() => {
-        console.log(userID)
-    }, [userID])
-
-    async function searchUsers() {
-        //setSearchTerm("garyvee");
-        await axios.get(`/api/searchUsers?search=${searchTerm}`)
-        .then(response => {  
-            //setUserID(response.data);
-            setTweetResults(response.data.data);
-            setUserInfo(response.data.includes.users[0]);
-            setShow(true);
-        })   
-    }
-
-/* 
-    async function searchUsers() {
-        setSearchTerm("garyvee");
-        await axios.get(`/api/searchUsers?search=${searchTerm}`)
-        .then(response => {  
-            setUserID(response.data.data.id);
-            //searchTimelineByID();
-            //setShow(true);
-        })   
-    }
+    const [topicSearchTweets, setTopicSearchTweets] = useState([]);
+    const [topicSearchUsers, setTopicSearchUsers] = useState([]);
+    const [topicSearchMergedArray, setTopicSearchMergedArray] = useState([]);
     
-    async function searchTimelineByID() {
-        setUserID("5768872");
-        await axios.get(`/api/searchUserTimeline?ID=${userID}`)
-        .then(response => {
-            setTweetResults(response.data.data);
+    /*
+    useEffect(() => {
+        console.log(topicSearchTweets)
+    }, [topicSearchTweets])
+    */
+    
+    useEffect(() => {
+        console.log(topicSearchUsers)
+    }, [topicSearchUsers])
+    
+
+    /*
+    useEffect(() => {
+        console.log(topicSearchMergedArray)
+    }, [topicSearchMergedArray])
+    */
+
+    async function searchUsers() {
+        await axios.get(`/api/searchUsers?search=${searchTerm}`)
+        .then(response => {  
+            setTweetResults(response.data);
             setUserInfo(response.data.includes.users[0]);
             setShow(true);
-        })
-        
+        })   
     }
-*/
+
+    async function searchTopics() {
+        await axios.get(`/api/searchTopics?search=${searchTerm}`)
+        .then(response => {
+            //setTopicSearchTweets(response.data);
+            setTopicSearchUsers(response.data);
+            //setTopicSearchMergedArray(response.data);
+        })
+    }
+
+      
 
     let userSearchCards = 
         <div>

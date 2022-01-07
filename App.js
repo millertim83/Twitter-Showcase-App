@@ -134,33 +134,6 @@ app.get("/api/headspaceTweets", async(req, res) => {
 
 //Search page functions//
 
-/*
-app.get("/api/searchUsers", async(req, res) => {
-    let userSearchResults = "";
-    const search = req.query.search;
-    await axios
-        .get(`https://api.twitter.com/2/users/by/username/${search}`, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            userSearchResults=response.data;
-            res.send(userSearchResults);
-        })
-        .catch((error) => console.log(error));
-});
-
-app.get("/api/searchUserTimeline", async(req, res) => {
-    let tweetResults="";
-    const userID = req.query.ID;
-    await axios
-        .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`, 
-        {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            tweetResults=response.data;
-            res.send(tweetResults);
-        })
-        .catch((error) => console.log(error));
-})
-*/
-
 app.get("/api/searchUsers", async(req, res) => {
     let userID = "";
     let tweetResults = "";
@@ -180,9 +153,26 @@ app.get("/api/searchUsers", async(req, res) => {
         }).catch((error) => console.log(error));
 })
 
-/*if (response.errors) {
-    res.send("Username not found!")
-}*/
+app.get("/api/searchTopics", async(req, res) => {
+    let tweetResults = [];
+    let userResults = [];
+    let mergedResults = []
+    const search = req.query.search;
+    await axios
+        .get(`https://api.twitter.com/2/tweets/search/recent?tweet.fields=created_at,public_metrics&expansions=author_id&user.fields=name,username,profile_image_url&query=${search}`,
+        {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            tweetResults=response.data.data;
+            userResults=response.data.includes.users;
+            mergedResults=tweetResults.map((result, i) => result + userResults[i]);
+            //res.send(tweetResults);
+            res.send(userResults);
+            console.log(userResults);
+            //res.send(mergedResults);
+            //console.log(mergedResults);
+        })
+        .catch((error) => console.log(error));
+})
 
 
 /*

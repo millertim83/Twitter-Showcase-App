@@ -16,7 +16,7 @@ function Search()  {
     }, [userID])
 
     async function searchUsers() {
-        setSearchTerm("garyvee");
+        //setSearchTerm("garyvee");
         await axios.get(`/api/searchUsers?search=${searchTerm}`)
         .then(response => {  
             //setUserID(response.data);
@@ -74,7 +74,20 @@ function Search()  {
                         
                     </div>
                     <div>
-                        <button onClick={searchUsers}>Search by username</button>
+                        <form className="text-center form-control-lg">
+                            <input
+                                value={searchTerm}
+                                type="text"
+                                placeholder="Enter search here.."
+                                className="form-control-sm"
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                autoFocus
+                            >
+                            </input>
+                            <button type="button" className="btn-warning" onClick={searchUsers}>Search by username</button>
+                            <button type="button" className="btn btn-warning" onClick={searchTopics}>Search by topic</button>
+                        </form>
+                        
                     </div>
                     
                     
@@ -87,54 +100,10 @@ function Search()  {
     );
 }
 
-export default Search;
-//<button onClick={searchUsers}>Search by username</button>
-//onClick={searchTimelineByID}>Search by username
+export default Search
 
-//<button type="button" className="btn btn-warning" onClick={searchUsers}>Search by user</button>
 
-//tweets={tweets}
-//users={users}
+                       
 
-//tweetResults={tweetResults}
-//userResults={userResults}
+             
 
-//<button type="button" className="btn btn-warning" onClick={searchTopics}>Search by topic</button>
-
-//<button onClick = {() => { setShow(true)  }}>Search</button>
-/*                        
-<form className="text-center form-control-lg">
-                            <input
-                                //value={searchTerm}
-                                type="text"
-                                placeholder="Enter search here.."
-                                className="form-control-sm"
-                                //onChange={(e) => setSearchTerm(e.target.value)}
-                                autoFocus
-                            >
-                            </input>
-                            
-                        </form>
-                        */
-
-/*                        
-if (response.data.id) {
-    setUserID(response.data.id)
-    searchTimelineById();
-} return (alert("No user found with that name!"))
-*/
-
- //handleUserSearch(e);
-    //setSearchTerm("elonmusk");
-    //axios.get(`/api/searchUsers?search=${searchTerm}`)
-
-/*
-    async function searchUsers() {
-        setSearchTerm("garyvee");
-        await axios.get(`/api/searchUsers?search=${searchTerm}`)
-        .then(response => {  
-            setUserSearchResults(response.data);
-            setShow(true);
-        })   
-    }
-*/

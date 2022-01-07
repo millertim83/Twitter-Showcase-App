@@ -22,8 +22,6 @@ const eckhartTweetsEndpoint = "https://api.twitter.com/2/users/14592008/tweets?e
 const headspaceTweetsEndpoint = "https://api.twitter.com/2/users/402025521/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
 const deepakTweetsEndpoint = "https://api.twitter.com/2/users/15588657/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
 
-const userTimelineEndpoint = "https://api.twitter.com/2/users/44196397/tweets?expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics";
-
 app.get("/api/dalaiInfo", async(req, res) => {
     let userInfo = "";
     await axios
@@ -136,6 +134,7 @@ app.get("/api/headspaceTweets", async(req, res) => {
 
 //Search page functions//
 
+/*
 app.get("/api/searchUsers", async(req, res) => {
     let userSearchResults = "";
     const search = req.query.search;
@@ -160,7 +159,44 @@ app.get("/api/searchUserTimeline", async(req, res) => {
         })
         .catch((error) => console.log(error));
 })
+*/
+
+app.get("/api/searchUsers", async(req, res) => {
+    let userID = "";
+    let tweetResults = "";
+    const search = req.query.search;
+    await axios
+        .get(`https://api.twitter.com/2/users/by/username/${search}`, {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+            userID=response.data.data.id;
+            axios
+                .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`,
+                {headers: { Authorization: `Bearer ${token}`,}})
+                .then((response) => {
+                    tweetResults=response.data;
+                    res.send(tweetResults);
+                })
+                .catch((error) => console.log(error));
+        }).catch((error) => console.log(error));
+})
 
 /*if (response.errors) {
     res.send("Username not found!")
 }*/
+
+
+/*
+if (!response.data.data.id) {
+    res.send("No user found with that name!")
+} else {
+    userID=response.data.data.id;
+    console.log(userID);
+    axios
+        .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`, 
+        {headers: { Authorization: `Bearer ${token}`,}})
+        .then((response) => {
+        tweetResults=response.data;
+        res.send(tweetResults);
+        })
+        .catch((error) => console.log(error));
+        */

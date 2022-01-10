@@ -1,9 +1,4 @@
 .body {
-    height: 100vh;
-    background-image: url(../images/pinkandblue.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     text-align: center;
     border-top: 1px solid black;
     

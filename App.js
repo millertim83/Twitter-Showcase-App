@@ -154,22 +154,28 @@ app.get("/api/searchUsers", async(req, res) => {
 })
 
 app.get("/api/searchTopics", async(req, res) => {
-    let tweetResults = [];
-    let userResults = [];
-    let mergedResults = []
+    
     const search = req.query.search;
     await axios
         .get(`https://api.twitter.com/2/tweets/search/recent?tweet.fields=created_at,public_metrics&expansions=author_id&user.fields=name,username,profile_image_url&query=${search}`,
         {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            tweetResults=response.data.data;
-            userResults=response.data.includes.users;
-            mergedResults=tweetResults.map((result, i) => result + userResults[i]);
-            //res.send(tweetResults);
-            res.send(userResults);
-            console.log(userResults);
-            //res.send(mergedResults);
-            //console.log(mergedResults);
+            let tweets = response.data.data.map((result) => {
+                for (let i = 0; i < response.data.data.length; i++) {
+                    if (response.data.includes.users[i].id === result.author_id) {
+                        //let combinedObj = Object.defineProperty(result, "users", {value: response.data.includes.users[i]} )
+                        let combinedObj = Object.assign(result, response.data.includes.users[i]);
+                        return combinedObj;
+                    } else return
+                } 
+                
+                //search response.includes.users array for corresponding user
+                //create new property called 'user' and assign 
+                
+            })
+            console.log(tweets);
+            res.send(tweets);
+            
         })
         .catch((error) => console.log(error));
 })

@@ -32,7 +32,7 @@ function Search()  {
     }
 
     async function searchTopics() {
-        await axios.get(`/api/searchTopics?search=${searchTerm}`)
+        await axios.get(`/api/searchTopics?search=${searchTerm}`, {params: {_limit: 5}})
         .then(response => {
             setTopicSearchTweets(response.data);
         })

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Search.css";
 import TweetCard from "./TweetCard.js";
+import TopicSearchCards from "./TopicSearchCards"
 
 function Search()  {
     
@@ -11,13 +12,6 @@ function Search()  {
     const [show, setShow] = useState(false);
     const [topicSearchTweets, setTopicSearchTweets] = useState([]);
     
-    
-    /*
-    useEffect(() => {
-        console.log(tweetResults)
-    }, [tweetResults])
-    */
-
     useEffect(() => {
         console.log(topicSearchTweets)
     }, [topicSearchTweets])
@@ -34,6 +28,7 @@ function Search()  {
     async function searchTopics() {
         await axios.get(`/api/searchTopics?search=${searchTerm}`, {params: {_limit: 5}})
         .then(response => {
+            setShow(true);
             setTopicSearchTweets(response.data);
         })
     }
@@ -48,6 +43,18 @@ function Search()  {
                 userInfo={userInfo}
                 tweet={tweet}
              />
+            )}
+        </div>
+    
+    let topicSearchCards = 
+        <div>
+            {topicSearchTweets.map((tweet) =>
+            <TopicSearchCards
+                onClose={() => setShow(false)}
+                show={show}
+                topicSearchTweets={topicSearchTweets}
+                tweet={tweet}
+            />
             )}
         </div>
     
@@ -82,6 +89,9 @@ function Search()  {
                     
                     <div id="modal" className="container container-sm">
                         {userSearchCards}
+                    </div>
+                    <div id="topic-modal" className="container container-sm">
+                        {topicSearchCards}
                     </div>
                 </div>
             </div>

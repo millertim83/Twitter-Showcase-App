@@ -4,31 +4,28 @@ import check from "../images/check.png";
 import heart from "../images/heart.png";
 import retweet from "../images/retweet.png";
 
-export default function TweetCard({ show, onClose, tweetResults, userInfo, tweet }) {
-    
-
+export default function topicSearchCards({ show, onClose, topicSearchTweets, tweet }) {
     if (!show) {
         return null;
     }
-    
-    
+
     return (
-        tweetResults && (
+        topicSearchTweets && (
             <div>
                 <div id="tweet-modal" className="container">
                     <div className="row">
                         <div className="col-2">
                             <img id="profile-pic"
                             className="rounded-circle responsive-img"
-                            src={userInfo.profile_image_url}
-                            alt={userInfo.name}>
+                            src={tweet.profile_image_url}
+                            alt={tweet.name}>
                             </img>
                         </div>
                         <div id="name" className="col-3">
-                            <p>{userInfo.name} {userInfo.verified === true ? <img id="check" src={check}/> : null}</p>
+                            <p>{tweet.name} {tweet.verified === true ? <img id="check" src={check}/> : null}</p>
                         </div>  
                         <div className="col-3">
-                            <p id="username">{ `@${userInfo.username}` }</p>
+                            <p id="username">{ `@${tweet.username}` }</p>
                         </div>
                         <div className="col-4">
                             <p id="date">{tweet.created_at}</p>
@@ -52,13 +49,7 @@ export default function TweetCard({ show, onClose, tweetResults, userInfo, tweet
                         </div>
                     </div>
                 </div>
-                    <button onClick={onClose}>Close</button>  
-            </div> 
-        )  
-    );
+            </div>
+        )
+    )
 }
-
-
-
-
-    

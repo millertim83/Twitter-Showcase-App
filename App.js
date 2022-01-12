@@ -154,52 +154,26 @@ app.get("/api/searchUsers", async(req, res) => {
 })
 
 app.get("/api/searchTopics", async(req, res) => {
-    
     const search = req.query.search;
     await axios
         .get(`https://api.twitter.com/2/tweets/search/recent?tweet.fields=created_at,public_metrics&expansions=author_id&user.fields=name,username,profile_image_url&query=${search}`,
         {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            
-            let tweets = response.data.data.map((result) => {
-                for (let i = 0; i < response.data.data.length; i++) {
-                    if (response.data.includes.users[i].id === result.author_id) {
-                        //let combinedObj = Object.defineProperty(result, "user", {value: response.data.includes.users[i]} )
-                        let combinedObj = Object.assign(result, response.data.includes.users[i]);
-                        return combinedObj;
-                    } else return
-                } 
-            
-/*
-            let tweets = response.data.data.map((result) => {
-                const userID = response.data.includes.users.find(({ id }) => id === result.author_id);
-                Object.assign(result, "user", );
-                */    
-
-                //search response.includes.users array for corresponding user
-                //create new property called 'user' and assign 
-                
-            })
-            console.log(tweets);
-            res.send(tweets);
-            
+            let tweets = response.data.data;
+            let users = response.data.includes.users;
+            function mergeArrays(arr1, arr2) {
+                return arr1.map((item, i) => {
+                    if (item.author_id === arr2[i].id) {
+                        return Object.assign({}, item, arr2[i]);
+                    }
+                });
+            } 
+            const mergedArray = mergeArrays(tweets, users);
+            res.send(mergedArray);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error));                
 })
+    
+        
 
 
-/*
-if (!response.data.data.id) {
-    res.send("No user found with that name!")
-} else {
-    userID=response.data.data.id;
-    console.log(userID);
-    axios
-        .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`, 
-        {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-        tweetResults=response.data;
-        res.send(tweetResults);
-        })
-        .catch((error) => console.log(error));
-        */

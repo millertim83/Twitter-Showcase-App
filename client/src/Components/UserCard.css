@@ -27,3 +27,7 @@
 #followers {
     font-size: x-small;
 }
+
+#description {
+    height: 60px;
+}

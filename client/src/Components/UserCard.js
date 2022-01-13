@@ -66,42 +66,37 @@ export default function UserCard({userInfo})  {
                             </img>
                         </div>
                         
-                        <div className="col-5 text-center pt-2">  
-                            <p id="name">{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </p>  
+                        <div className="col-5 text-center pt-2"> 
+                            <div className = "row"> 
+                                <p id="name">{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </p>
+                            </div>
+                            <div className = "row"> 
+                                <p id="username" className="text-secondary">{`@${userData.data.username}`}</p> 
+                            </div> 
                         </div> 
                         <div className="col-5 text-center pt-2">
-                            <p id="username" className="text-secondary">{`@${userData.data.username}`}</p>
+                            <div className = "row">
+                                <p id="location">{userData.data.location ? <img id="pin" src={pin} /> : null } {userData.data.location} </p>
+                            </div>
+                            <div className = "row">
+                                <p id="join">{<img id="calendar" src={calendar}/>} {`Joined ${joinedTwitterDate(userData.data.created_at)}`}</p>
+                            </div>
+
                         </div>
                 </div>
                 <div  className="row">
-                    <div className="col-3">
-
+                    <div id = "followers" className="col-6">
+                        {`Followers: ${userData.data.public_metrics.followers_count}`}
                     </div>
-                    <div id="description" className="col-8">
-                        <p id="user-description">{userData.data.description}</p>
-                    </div>
+                    <div id="following" className="col-6"> 
+                        {`Following: ${userData.data.public_metrics.following_count}`}
+                    </div> 
                 </div>
                 <div className="row">
-                    <div className="col-2">
-
+                    <div id = "description" className=" pt-2 col-12">
+                        <p id="user-description">{userData.data.description}</p>
                     </div>
-                    <div className="col-5 text-center">
-                        <p id="location">{userData.data.location ? <img id="pin" src={pin} /> : null } {userData.data.location} </p>
-                    </div>
-                    <div className="col-5">
-                        <p id="join">{<img id="calendar" src={calendar}/>} {`Joined ${joinedTwitterDate(userData.data.created_at)}`}</p>
-                    </div>
-
-                </div>
-                <div className="row justify-content-around">
-                    <div id="followers" className="col-5">
-                        {`Followers: ${userData.data.public_metrics.followers_count}`}
-                    </div> 
-                    <div id="following" className="col-5"> 
-                        {`Following: ${userData.data.public_metrics.following_count}`}
-                    </div>
-                </div>
-                
+                </div>    
             </div>
         )
     )

@@ -7,6 +7,27 @@ import retweet from "../images/retweet.png";
 
 export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
     let tweet = tweetTimeline;
+
+    function formatTweetTime(createdAt) {
+        let now = new Date();
+        let dateArray = createdAt.split("-");
+        let year = dateArray[0];
+        let month = dateArray[1];
+        let unsplitDay = dateArray[2];
+        let timeArray = unsplitDay.split("T");
+        let day = timeArray[0];
+        let unsplitTime = timeArray[1];
+        let splitTime = unsplitTime.split(":");
+        let hour = splitTime[0] - 5;
+        let minute = splitTime[1];
+        let unsplitSeconds = splitTime[2];
+        let splitSeconds = unsplitSeconds.split(".");
+        let seconds = splitSeconds[0];
+        let tweetDate = new Date (year, month, day, hour, minute, seconds);
+        //displayed time should = # of minutes since tweet
+        let displayedTime = ((tweetDate - now)/ 1000)/60;
+        return displayedTime;
+    }
     
     if (!show) {
         return null;
@@ -30,7 +51,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                     <p id="username">{ `@${tweet.includes.users[0].username}` }</p>
                 </div>
                 <div className="col-4">
-                    <p id="date">{tweet.data[randomIndex].created_at}</p>
+                    <p id="date">{formatTweetTime(tweet.data[randomIndex].created_at)}</p>
                 </div>
                 
             </div>

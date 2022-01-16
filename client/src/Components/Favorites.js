@@ -85,28 +85,28 @@ function Favorites() {
                 <h3 className = "pt-5">My Faves</h3>
                 <h6 className = "pt-3 pl-3">Click on a user to display a random tweet!</h6>
 
-                <div className="d-flex flex-wrap flex-fill">
+                <div className="d-flex flex-wrap">
                     <div className="container col-sm user-card"
                         onClick = {() => { setShow(true); getDalaiTweet() }}>
                         <UserCard userInfo={dalaiLamaInfo} />  
                     </div> 
                     
-                    <div className="container col-sm"
+                    <div className="container col-sm user-card"
                         onClick = {() => {setShow(true); getSadhTweet() }}>
                         <UserCard userInfo={sadhGuruInfo} />
                     </div> 
                     
-                    <div className="container col-sm"
+                    <div className="container col-sm user-card"
                         onClick = {() => { setShow(true); getEckhartTweet() }}>
                         <UserCard userInfo={eckhartTolleInfo} />
                     </div> 
                     
-                    <div className="container col-sm"
+                    <div className="container col-sm user-card"
                         onClick = {() => {setShow(true); getHeadspaceTweet() }}>
                         <UserCard userInfo={headspaceInfo} />
                     </div> 
                     
-                    <div className="container"
+                    <div className="container col-sm user-card"
                         onClick = {() => {setShow(true); getDeepakTweet() }}>
                         <UserCard userInfo={deepakChopraInfo} />
                     </div> 

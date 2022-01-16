@@ -155,12 +155,17 @@ app.get("/api/searchUsers", async(req, res) => {
 
 app.get("/api/searchTopics", async(req, res) => {
     const search = req.query.search;
+    let tweets = []
+    let users = []
     await axios
         .get(`https://api.twitter.com/2/tweets/search/recent?tweet.fields=created_at,public_metrics&expansions=author_id&user.fields=name,username,profile_image_url&query=${search}`,
-        {headers: { Authorization: `Bearer ${token}`,}})
+        {headers: { Authorization: `Bearer ${token}`}})
         .then((response) => {
-            let tweets = response.data.data;
-            let users = response.data.includes.users;
+            for (i = 0; i < 4; i++) {
+                tweets.push(response.data.data[i]);
+                users.push(response.data.includes.users[i]);
+            }
+                
             function mergeArrays(arr1, arr2) {
                 return arr1.map((item, i) => {
                     if (item.author_id === arr2[i].id) {

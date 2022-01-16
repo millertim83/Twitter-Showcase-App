@@ -67,10 +67,10 @@ export default function UserCard({userInfo})  {
                         </div>
                         
                         <div className="col-5 text-center pt-2"> 
-                            <div className = "row"> 
+                            <div className = "row pb-0"> 
                                 <p id="name">{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </p>
                             </div>
-                            <div className = "row"> 
+                            <div className = "row pt-0"> 
                                 <p id="username" className="text-secondary">{`@${userData.data.username}`}</p> 
                             </div> 
                         </div> 
@@ -93,7 +93,7 @@ export default function UserCard({userInfo})  {
                     </div> 
                 </div>
                 <div className="row">
-                    <div id = "description" className=" pt-2 col-12">
+                    <div id = "description" className="pt-2 col-12">
                         <p id="user-description">{userData.data.description}</p>
                     </div>
                 </div>    

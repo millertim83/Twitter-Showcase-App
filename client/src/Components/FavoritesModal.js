@@ -8,6 +8,8 @@ import retweet from "../images/retweet.png";
 export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
     let tweet = tweetTimeline;
 
+    /*
+
     function formatTweetTime(createdAt) {
         let now = new Date();
         let dateArray = createdAt.split("-");
@@ -28,6 +30,65 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
         let displayedTime = ((tweetDate - now)/ 1000)/60;
         return displayedTime;
     }
+
+    */
+
+    function formatTweetTime(createdAt) {
+        let dateArray = createdAt.split("-");
+        let year = dateArray[0];
+        let month = dateArray[1];
+        switch (month) {
+            case "01": 
+                month = "Jan";
+            break;
+            case "02": 
+                month = "Feb";
+            break;
+            case "03": 
+                month = "March";
+            break;
+            case "04": 
+                month = "April";
+            break;
+            case "05": 
+                month = "May";
+            break;
+            case "06": 
+                month = "June";
+            break;
+            case "07": 
+                month = "July";
+            break;
+            case "08": 
+                month = "Aug";
+            break;
+            case "09": 
+                month = "Sep";
+            break;
+            case "10": 
+                month = "Oct";
+            break;
+            case "11": 
+                month = "Nov";
+            break;
+            case "12": 
+                month = "Dec";
+        }
+        let unsplitDay = dateArray[2];
+        let timeArray = unsplitDay.split("T");
+        let day = timeArray[0];
+        let unsplitTime = timeArray[1];
+        let splitTime = unsplitTime.split(":");
+        let hour = splitTime[0];
+        let minute = splitTime[1];
+        let unsplitSeconds = splitTime[2];
+        let splitSeconds = unsplitSeconds.split(".");
+        let seconds = splitSeconds[0];
+        let displayedTime = (`${month} ${day} ${year} ${hour}:${minute}:${seconds}`);
+        return displayedTime;
+    }
+
+   
     
     if (!show) {
         return null;

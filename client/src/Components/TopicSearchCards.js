@@ -12,7 +12,7 @@ export default function topicSearchCards({ show, onClose, topicSearchTweets, twe
     return (
         topicSearchTweets && (
             <div>
-                <div id="tweet-modal" className="container mb-2">
+                <div id="tweet-modal" className="container mb-2" key={tweet.id}>
                     <div className="row">
                         <div className="col-2">
                             <img id="profile-pic"

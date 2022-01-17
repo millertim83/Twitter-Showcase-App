@@ -4,18 +4,15 @@ import check from "../images/check.png";
 import heart from "../images/heart.png";
 import retweet from "../images/retweet.png";
 
-export default function TweetCard({ show, onClose, tweetResults, userInfo, tweet }) {
-    
-
+export default function TweetCard({ show, tweetResults, userInfo, tweet }) {
     if (!show) {
         return null;
     }
     
-    
     return (
         tweetResults && (
             <div>
-                <div id="tweet-modal" className="container">
+                <div id="tweet-modal" className="container mb-2" key={userInfo.id}>
                     <div className="row">
                         <div className="col-2">
                             <img id="profile-pic"
@@ -51,8 +48,7 @@ export default function TweetCard({ show, onClose, tweetResults, userInfo, tweet
                             <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet.public_metrics.retweet_count}</p>
                         </div>
                     </div>
-                </div>
-                    <button onClick={onClose}>Close</button>  
+                </div>  
             </div> 
         )  
     );

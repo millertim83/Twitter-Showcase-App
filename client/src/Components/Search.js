@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Search.css";
 import TweetCard from "./TweetCard.js";
-import TopicSearchCards from "./TopicSearchCards"
+import TopicSearchCards from "./TopicSearchCards";
+import CloseTweetsButton from "./CloseTweetsButton";
 
 function Search()  {
     
@@ -30,24 +31,26 @@ function Search()  {
         .then(response => {
             setShow(true);
             setTopicSearchTweets(response.data);
+            console.log(response.data);
         })
     }
 
     let userSearchCards = 
-        <div id = "user-search-cards">
-            {tweetResults.map((tweet) =>
+        <div id = "user-search-cards" className="container">
+            {tweetResults.map((tweet, i) =>
             <TweetCard
                 onClose={() => setShow(false)} 
                 show={show}
                 tweetResults={tweetResults}
                 userInfo={userInfo}
                 tweet={tweet}
+                key={i}
              />
             )}
         </div>
     
     let topicSearchCards = 
-        <div className="container">
+        <div id = "topic-search-cards" className="container mt-1">
             {topicSearchTweets.map((tweet) =>
             <TopicSearchCards
                 onClose={() => setShow(false)}
@@ -58,6 +61,13 @@ function Search()  {
             )}
         </div>
     
+    function closeTweets() {
+        setShow(false);
+        setTweetResults([]);
+        setUserInfo({});
+        setTopicSearchTweets([]);
+    }
+    
 
 
     return (
@@ -67,10 +77,10 @@ function Search()  {
                     <div className = "col-12 text-center">
                         <h1>Search</h1>
                         <p>Search by username or tweet content.</p>
-                        
                     </div>
-                    <div>
-                        <form className="text-center form-control-lg">
+                </div>    
+                    <div className="row mb-0">
+                        <form className="text-center form-control-lg mr-1">
                             <input
                                 value={searchTerm}
                                 type="text"
@@ -80,20 +90,26 @@ function Search()  {
                                 autoFocus
                             >
                             </input>
-                            <button type="button" className="btn-warning" onClick={searchUsers}>Search by username</button>
-                            <button type="button" className="btn btn-warning" onClick={searchTopics}>Search by topic</button>
+                            <button type="button" className="btn btn-warning mb-0 ml-1 mr-1" onClick={searchUsers}>username</button>
+                            <button type="button" className="btn btn-warning mb-0 ml-1" onClick={searchTopics}>topic</button>
                         </form>
                         
                     </div>
-                    
-                    
-                    <div id="modal" className="container container-sm">
-                        {userSearchCards}
+                    <div className="row">
+                        <CloseTweetsButton
+                            show={show}
+                            closeTweets={closeTweets}
+                        />
                     </div>
-                    <div id="topic-modal" className="container container-sm">
-                        {topicSearchCards}
+                    
+                    <div className="row">
+                        <div id="modal" className="m-auto container container-sm">
+                            {userSearchCards}
+                        </div>
+                        <div id="topic-modal" className="m-auto container container-sm">
+                            {topicSearchCards}
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     );

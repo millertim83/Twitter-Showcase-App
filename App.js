@@ -141,7 +141,11 @@ app.get("/api/searchUsers", async(req, res) => {
     await axios
         .get(`https://api.twitter.com/2/users/by/username/${search}`, {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
+            if (response.status === 400) {
+                res.status(400).send("No user found with that name!")
+            } else {
             userID=response.data.data.id;
+            }
             axios
                 .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`,
                 {headers: { Authorization: `Bearer ${token}`,}})

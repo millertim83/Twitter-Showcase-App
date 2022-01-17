@@ -2,6 +2,7 @@
     text-align: center;
     border-top: 1px solid black;
     
+    
 }
 
 #modal {
@@ -11,5 +12,11 @@
     min-width: 50%;
     max-width: 90%;
     margin: auto;
+}
+
+#user-search-cards {
+    max-height: 400px;
+    position: absolute;
+    overflow: scroll;
     
 }

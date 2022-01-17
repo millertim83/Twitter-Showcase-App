@@ -34,7 +34,7 @@ function Search()  {
     }
 
     let userSearchCards = 
-        <div>
+        <div id = "user-search-cards">
             {tweetResults.map((tweet) =>
             <TweetCard
                 onClose={() => setShow(false)} 
@@ -47,7 +47,7 @@ function Search()  {
         </div>
     
     let topicSearchCards = 
-        <div>
+        <div className="container">
             {topicSearchTweets.map((tweet) =>
             <TopicSearchCards
                 onClose={() => setShow(false)}

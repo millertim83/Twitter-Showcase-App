@@ -165,7 +165,7 @@ app.get("/api/searchTopics", async(req, res) => {
         .get(`https://api.twitter.com/2/tweets/search/recent?tweet.fields=created_at,public_metrics&expansions=author_id&user.fields=name,username,profile_image_url&query=${search}`,
         {headers: { Authorization: `Bearer ${token}`}})
         .then((response) => {
-            for (i = 0; i < 4; i++) {
+            for (i = 0; i < 5; i++) {
                 tweets.push(response.data.data[i]);
                 users.push(response.data.includes.users[i]);
             }

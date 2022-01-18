@@ -80,11 +80,60 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
         let unsplitTime = timeArray[1];
         let splitTime = unsplitTime.split(":");
         let hour = splitTime[0];
+        switch(hour) {
+            case "00":
+                hour = 19;
+                break;
+            case "01":
+                hour = 20;
+                break;
+            case "02":
+                hour = 21;
+                break;
+            case "03":
+                hour = 22;
+                break;
+            case "04":
+                hour = 23;
+                break;
+            case "05":
+                hour = "00";
+                break;
+            case "06":
+                hour = "01";
+                break;
+            case "07":
+                hour = "02";
+                break;
+            case "08":
+                hour = "03";
+                break;
+            case "09":
+                hour = "04";
+                break;
+            case "10":
+            case "11":
+            case "12":
+            case "13":
+            case "14":
+                hour = (`0${hour - 5}`);
+                break;
+            case "15":
+            case "16":
+            case "17":
+            case "18":                   
+            case "19":
+            case "20":
+            case "21":
+            case "22":
+            case "23":          
+                hour = hour - 5;
+        }
         let minute = splitTime[1];
         let unsplitSeconds = splitTime[2];
         let splitSeconds = unsplitSeconds.split(".");
         let seconds = splitSeconds[0];
-        let displayedTime = (`${month} ${day} ${year} ${hour}:${minute}:${seconds}`);
+        let displayedTime = (`${month} ${day} ${year} ${hour}:${minute}:${seconds}EST`);
         return displayedTime;
     }
 
@@ -105,11 +154,12 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                         alt={tweet.includes.users[0].name}>
                     </img>
                 </div>
-                <div id="name" className="col-3">
-                    <p>{tweet.includes.users[0].name} {tweet.includes.users[0].verified === true ? <img id="check" src={check}/> : null}</p>
+                <div id="name" className="col-4">
+                    <p className="mb-0">{tweet.includes.users[0].name} {tweet.includes.users[0].verified === true ? <img id="check" src={check}/> : null}</p>
+                    <p id="username" className="mt-1">{ `@${tweet.includes.users[0].username}` }</p>
                 </div>  
-                <div className="col-3">
-                    <p id="username">{ `@${tweet.includes.users[0].username}` }</p>
+                <div className="col-2">
+
                 </div>
                 <div className="col-4">
                     <p id="date">{formatTweetTime(tweet.data[randomIndex].created_at)}</p>

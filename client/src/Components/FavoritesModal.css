@@ -9,3 +9,15 @@
 #username {
     color: gray;
 }
+
+#date {
+    font-size: .6em;
+}
+
+#name {
+    font-size: .85em;
+}
+
+#username {
+    font-size: .8em;
+}

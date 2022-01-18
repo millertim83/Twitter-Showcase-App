@@ -48,8 +48,6 @@ export default function UserCard({userInfo})  {
             case "12": 
                 month = "Dec";
         }
-        
-
         return(`${month} ${year}`) ;
     } 
 
@@ -67,21 +65,12 @@ export default function UserCard({userInfo})  {
                         </div>
                         
                         <div className="col-5 text-center pt-2"> 
-                            <div className = "row pb-0"> 
-                                <p id="name">{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </p>
-                            </div>
-                            <div className = "row pt-0"> 
-                                <p id="username" className="text-secondary">{`@${userData.data.username}`}</p> 
-                            </div> 
+                                <p id="name" className="mb-0 pb-0">{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </p> 
+                                <p id="username" className="text-secondary mt-0 pt-0">{`@${userData.data.username}`}</p> 
                         </div> 
                         <div className="col-5 text-center pt-2">
-                            <div className = "row">
-                                <p id="location">{userData.data.location ? <img id="pin" src={pin} /> : null } {userData.data.location} </p>
-                            </div>
-                            <div className = "row">
-                                <p id="join">{<img id="calendar" src={calendar}/>} {`Joined ${joinedTwitterDate(userData.data.created_at)}`}</p>
-                            </div>
-
+                            <p id="location" className="mb-0">{userData.data.location ? <img id="pin" src={pin} /> : null } {userData.data.location} </p>
+                            <p id="join" className="mt-1">{<img id="calendar" src={calendar}/>} {`Joined ${joinedTwitterDate(userData.data.created_at)}`}</p>
                         </div>
                 </div>
                 <div  className="row">

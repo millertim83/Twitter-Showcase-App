@@ -81,11 +81,12 @@ function Favorites() {
 
     return (
         <div className = "body">
-            <div className = "row h-100">
+            <div className = "row">
                 <h3 className = "pt-5">My Faves</h3>
                 <h6 className = "pt-3 pl-3">Click on a user to display a random tweet!</h6>
+            </div>
 
-                <div className="d-flex flex-wrap">
+                <div className=" container d-flex flex-wrap">
                     <div className="container col-sm user-card"
                         onClick = {() => { setShow(true); getDalaiTweet() }}>
                         <UserCard userInfo={dalaiLamaInfo} />  
@@ -120,7 +121,7 @@ function Favorites() {
                         show={show} 
                         tweetTimeline={tweetTimeline} />
                 </div>
-            </div>
+            
                 
                  
         </div>

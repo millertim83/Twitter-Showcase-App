@@ -13,16 +13,13 @@ function Search()  {
     const [show, setShow] = useState(false);
     const [topicSearchTweets, setTopicSearchTweets] = useState([]);
     
-    useEffect(() => {
-        console.log(topicSearchTweets)
-    }, [topicSearchTweets])
-    
     async function searchUsers() {
         await axios.get(`/api/searchUsers?search=${searchTerm}`)
         .then(response => {  
             setTweetResults(response.data.data);
             setUserInfo(response.data.includes.users[0]);
             setShow(true);
+            setTopicSearchTweets([]);
         })   
     }
 
@@ -31,12 +28,26 @@ function Search()  {
         .then(response => {
             setShow(true);
             setTopicSearchTweets(response.data);
-            console.log(response.data);
+            setTweetResults([]);
+            setUserInfo([]);
         })
     }
 
+    let topicSearchCards = 
+        <div id="topic-search-cards" className="container-sm mt-1">
+            {topicSearchTweets.map((tweet, i) =>
+            <TopicSearchCards
+                onClose={() => setShow(false)}
+                show={show}
+                topicSearchTweets={topicSearchTweets}
+                tweet={tweet}
+                key={i}
+            />
+            )}
+        </div>
+
     let userSearchCards = 
-        <div id = "user-search-cards" className="container">
+        <div id="user-search-cards" className="container-sm mt-1">
             {tweetResults.map((tweet, i) =>
             <TweetCard
                 onClose={() => setShow(false)} 
@@ -45,18 +56,6 @@ function Search()  {
                 userInfo={userInfo}
                 tweet={tweet}
                 key={i}
-             />
-            )}
-        </div>
-    
-    let topicSearchCards = 
-        <div id = "topic-search-cards" className="container mt-1">
-            {topicSearchTweets.map((tweet) =>
-            <TopicSearchCards
-                onClose={() => setShow(false)}
-                show={show}
-                topicSearchTweets={topicSearchTweets}
-                tweet={tweet}
             />
             )}
         </div>

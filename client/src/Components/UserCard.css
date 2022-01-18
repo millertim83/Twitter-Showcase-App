@@ -13,19 +13,19 @@
 }
 
 #name {
-    font-size: .875em;
-}
-
-#username {
     font-size: .75em;
 }
 
+#username {
+    font-size: .65em;
+}
+
 #join {
-    font-size: x-small;
+    font-size: .6em;
 }
 
 #location {
-    font-size: x-small;
+    font-size: .6em;
 }
 
 #following {

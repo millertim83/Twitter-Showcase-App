@@ -12,10 +12,19 @@ function Search()  {
     const [userInfo, setUserInfo] = useState({});
     const [show, setShow] = useState(false);
     const [topicSearchTweets, setTopicSearchTweets] = useState([]);
+    const [searchError, setSearchError] = useState("");
     
+    useEffect(() => {
+        console.log(`Error: ${searchError}`)
+    }, [searchError]);
+
     async function searchUsers() {
         await axios.get(`/api/searchUsers?search=${searchTerm}`)
-        .then(response => {  
+        .then(response => { 
+            if (response.data.error) {
+                alert("No user found by that name!");
+                return;
+            } 
             setTweetResults(response.data.data);
             setUserInfo(response.data.includes.users[0]);
             setShow(true);
@@ -26,11 +35,15 @@ function Search()  {
     async function searchTopics() {
         await axios.get(`/api/searchTopics?search=${searchTerm}`, {params: {_limit: 5}})
         .then(response => {
+            if (response.data.error) {
+                alert("No topics found!");
+                return;
+            }
             setShow(true);
             setTopicSearchTweets(response.data);
             setTweetResults([]);
             setUserInfo([]);
-        })
+        }).catch((error) => console.log(error))
     }
 
     let topicSearchCards = 
@@ -89,8 +102,8 @@ function Search()  {
                                 autoFocus
                             >
                             </input>
-                            <button type="button" className="btn btn-warning mb-0 ml-1 mr-1" onClick={searchUsers}>username</button>
-                            <button type="button" className="btn btn-warning mb-0 ml-1" onClick={searchTopics}>topic</button>
+                            <button type="button" className="btn mb-0 ml-1 mr-1" id="user-btn" onClick={searchUsers}>username</button>
+                            <button type="button" className="btn mb-0 ml-1" id="topic-btn" onClick={searchTopics}>topic</button>
                         </form>
                         
                     </div>

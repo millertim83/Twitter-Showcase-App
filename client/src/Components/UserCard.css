@@ -1,11 +1,3 @@
-#user-description {
-    font-size: x-small;
-}
-
-#description-row {
-   height: 50px;
-}
-
 #user-card {
     min-width: 300px;
     max-width: 350px;
@@ -13,11 +5,11 @@
 }
 
 #name {
-    font-size: .75em;
+    font-size: .3em;
 }
 
 #username {
-    font-size: .65em;
+    font-size: .3em;
 }
 
 #join {
@@ -29,11 +21,11 @@
 }
 
 #following {
-    font-size: x-small;
+    font-size: .5em;
 }
 
 #followers {
-    font-size: x-small;
+    font-size: .5em;
 }
 
 #description {

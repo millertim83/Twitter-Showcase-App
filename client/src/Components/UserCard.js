@@ -54,7 +54,7 @@ export default function UserCard({userInfo})  {
 
     return (
         userInfo && (
-            <div id="user-card" className="container bg-white m-3 p-3">
+            <div id="user-card" className="container bg-white m-2 p-2 shadow">
                 <div className="row">
                         <div className="col-2">
                             <img id="profile-pic" 
@@ -64,7 +64,7 @@ export default function UserCard({userInfo})  {
                             </img>
                         </div>
                         
-                        <div className="col-5 text-center pt-2"> 
+                        <div className="col-5 pt-2"> 
                                 <p id="name" className="mb-0 pb-0">{userData.data.name} {userData.data.verified === true ? <img id="check" src={check}/> : null} </p> 
                                 <p id="username" className="text-secondary mt-0 pt-0">{`@${userData.data.username}`}</p> 
                         </div> 
@@ -74,17 +74,11 @@ export default function UserCard({userInfo})  {
                         </div>
                 </div>
                 <div  className="row">
+                    <div className="col-3"></div>
                     <div id = "followers" className="col-6">
                         {`Followers: ${userData.data.public_metrics.followers_count}`}
                     </div>
-                    <div id="following" className="col-6"> 
-                        {`Following: ${userData.data.public_metrics.following_count}`}
-                    </div> 
-                </div>
-                <div className="row">
-                    <div id = "description" className="pt-2 col-12">
-                        <p id="user-description">{userData.data.description}</p>
-                    </div>
+                    <div className="col-3"></div>
                 </div>    
             </div>
         )

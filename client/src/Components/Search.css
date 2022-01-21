@@ -17,8 +17,17 @@
 
 #topic-search-cards {
     max-height: 400px;
+    
     position: absolute;
     overflow: scroll;
     margin-left: auto;
     margin-right: auto;
+}
+
+#user-btn {
+    background-color: #3992BC;
+}
+
+#topic-btn {
+    background-color: #3992BC;
 }

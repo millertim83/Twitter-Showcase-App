@@ -1,5 +1,6 @@
 const { default: axios } = require('axios');
 const express = require('express');
+const res = require('express/lib/response');
 const path = require('path');
 const port = 3001;
 const app = express();
@@ -141,11 +142,7 @@ app.get("/api/searchUsers", async(req, res) => {
     await axios
         .get(`https://api.twitter.com/2/users/by/username/${search}`, {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            if (response.status === 400) {
-                res.status(400).send("No user found with that name!")
-            } else {
             userID=response.data.data.id;
-            }
             axios
                 .get(`https://api.twitter.com/2/users/${userID}/tweets?max_results=5&expansions=author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics`,
                 {headers: { Authorization: `Bearer ${token}`,}})
@@ -154,7 +151,10 @@ app.get("/api/searchUsers", async(req, res) => {
                     res.send(tweetResults);
                 })
                 .catch((error) => console.log(error));
-        }).catch((error) => console.log(error));
+        }).catch((error) => {
+            console.log(error);
+            res.send({ error: error });
+        });
 })
 
 app.get("/api/searchTopics", async(req, res) => {
@@ -180,7 +180,10 @@ app.get("/api/searchTopics", async(req, res) => {
             const mergedArray = mergeArrays(tweets, users);
             res.send(mergedArray);
         })
-        .catch((error) => console.log(error));                
+        .catch((error) => {
+            console.log(error);
+            res.send({ error: error });
+        });                
 })
     
         

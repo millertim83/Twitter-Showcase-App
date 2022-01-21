@@ -82,38 +82,40 @@ function Favorites() {
     return (
         <div className = "body">
             <div className = "row">
-                <h3 className = "pt-5">My Faves</h3>
-                <h6 className = "pt-3 pl-3">Click on a user to display a random tweet!</h6>
+                <h3 className = "pt-2">My Faves</h3>
+                <h6 className = "pt-1">Click on a user to display a random tweet!</h6>
             </div>
-
-                <div className=" container d-flex flex-wrap">
-                    <div className="container col-sm user-card"
+            <div className="row container-sm text-center">
+            
+                <div id="user-container" className="container-sm mx-auto text-center">
+                    <div className="user-card mx-auto"
                         onClick = {() => { setShow(true); getDalaiTweet() }}>
                         <UserCard userInfo={dalaiLamaInfo} />  
                     </div> 
                     
-                    <div className="container col-sm user-card"
+                    <div className="user-card mx-auto"
                         onClick = {() => {setShow(true); getSadhTweet() }}>
                         <UserCard userInfo={sadhGuruInfo} />
                     </div> 
                     
-                    <div className="container col-sm user-card"
+                    <div className="user-card mx-auto"
                         onClick = {() => { setShow(true); getEckhartTweet() }}>
                         <UserCard userInfo={eckhartTolleInfo} />
                     </div> 
                     
-                    <div className="container col-sm user-card"
+                    <div className="user-card mx-auto"
                         onClick = {() => {setShow(true); getHeadspaceTweet() }}>
                         <UserCard userInfo={headspaceInfo} />
                     </div> 
                     
-                    <div className="container col-sm user-card"
+                    <div className="user-card mx-auto"
                         onClick = {() => {setShow(true); getDeepakTweet() }}>
                         <UserCard userInfo={deepakChopraInfo} />
                     </div> 
                 </div>   
-                
-                <div id="modal" className="container container-sm">
+            
+            </div>    
+                <div id="modal" className="container-sm">
                     <FavoritesModal
                         randomIndex={randomIndex} 
                         onClose={() => setShow(false)}

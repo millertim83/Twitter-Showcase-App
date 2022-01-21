@@ -1,4 +1,5 @@
 import React from "react";
+import "./CloseTweetsButton.css";
 
 export default function CloseTweetsButton( {show, closeTweets } ) {
     
@@ -8,7 +9,7 @@ export default function CloseTweetsButton( {show, closeTweets } ) {
 
     return (
         <div>
-            <button id="close-tweets-btn" className="btn btn-danger" onClick={closeTweets}>Close Tweets</button>
+            <button id="close-tweets-btn" className="btn" onClick={closeTweets}>Close Tweets</button>
         </div>
     )
 }

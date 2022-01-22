@@ -5,5 +5,13 @@
 }
 
 #frustrated {
-    max-width: 150px;
+    max-width: 300px;
+}
+
+#header {
+    background-color: #82D5FF;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    width: 100vh;
 }

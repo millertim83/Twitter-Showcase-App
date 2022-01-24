@@ -8,8 +8,8 @@
 #modal {
     z-index: 1000;
     position: absolute;
-    top: 50%;
-    min-width: 50%;
+    top: 30%;
+    min-width: 30%;
     max-width: 90%;
     margin: auto;
     
@@ -18,13 +18,16 @@
 .user-card {
     width: 100%;
     cursor: pointer;
-    margin: 0 auto;
+    margin: auto;
 }
 
+
 #user-container {
-    overflow: scroll;
-    max-height: 500px;
     width: 100%;
+    position: absolute;
+    overflow: auto;
+    max-height: 100%;
+    margin: auto;
 }
 
 

@@ -13,28 +13,28 @@ function Nav(props) {
                     <div>
                         <ul className = "navbar-nav ml-auto">
                             <li
-                                className = {`nav-item ${props.location.pathname === "/" ? "active" : ""
+                                className = {`nav-item ${props.location.pathname === "/" ? "active" : "inactive"
                                 }`} 
                                 
                             >
-                                <Link className = "nav-link" to = "/">
+                                <Link className = "nav-link nav-title" to = "/">
                                     Home
                                     <span className = "sr-only"></span>
                                 </Link>
                             </li>
                             <li
-                                className = {`nav-item ${props.location.pathname === "/Search" ? "active" : ""
+                                className = {`nav-item ${props.location.pathname === "/Search" ? "active" : "inactive"
                                 }`}
                             >
-                                <Link className = "nav-link" to = "/Search">
+                                <Link className = "nav-link nav-title" to = "/Search">
                                     Search
                                 </Link>
                             </li>
                             <li
-                                className = {`nav-item ${props.location.pathname === "/Favorites" ? "active" : ""
+                                className = {`nav-item ${props.location.pathname === "/Favorites" ? "active" : "inactive"
                                 }`}
                             >
-                                <Link className = "nav-link" to = "/Favorites">
+                                <Link className = "nav-link nav-title" to = "/Favorites">
                                     Favorites
                                 </Link>
                             </li>

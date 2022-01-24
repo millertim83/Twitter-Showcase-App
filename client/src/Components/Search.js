@@ -115,12 +115,13 @@ function Search()  {
                     </div>
                     
                     <div className="row">
-                        <div id="modal" className="m-auto container container-sm">
-                            {userSearchCards}
-                        </div>
                         <div id="topic-modal" className="m-auto container container-sm">
                             {topicSearchCards}
                         </div>
+                        <div id="modal" className="m-auto container container-sm">
+                            {userSearchCards}
+                        </div>
+                        
                     </div>
             </div>
         </div>

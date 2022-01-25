@@ -7,8 +7,8 @@ function Home() {
         <div className = "Home">
             <div className = "body">
                 <div id = "header" className="mb-3 text-center">
-                    <div>
-                        <h1>Serenity Now</h1>
+                    <div id = "page-title">
+                        <h2>Serenity Now</h2>
                         <h4>A Twitter Portal</h4>
                     </div>
                 </div>

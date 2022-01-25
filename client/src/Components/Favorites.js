@@ -81,8 +81,8 @@ function Favorites() {
 
     return (
         <div className = "body">
-            <div className = "row">
-                <h3 className = "pt-2">My Faves</h3>
+            <div id="banner" className = "row">
+                <h2 className = "pt-2">My Faves</h2>
                 <h6 className = "pt-1">Click on a user to display a random tweet!</h6>
             </div>
             <div id="user-container" className="container-lg mx-auto">

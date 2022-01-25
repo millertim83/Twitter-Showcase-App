@@ -84,45 +84,45 @@ function Search()  {
 
     return (
         <div className = "body">
-            <div className = "container">
-                <div className = "row text-center align-items">
-                    <div className = "col-12 text-center">
-                        <h1>Search</h1>
-                        <p>Search by username or tweet content.</p>
-                    </div>
-                </div>    
-                    <div className="row mb-0">
-                        <form className="text-center form-control-lg mr-1">
-                            <input
-                                value={searchTerm}
-                                type="text"
-                                placeholder="Enter search here.."
-                                className="form-control-sm"
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                autoFocus
-                            >
-                            </input>
-                            <button type="button" className="btn mb-0 ml-1 mr-1" id="user-btn" onClick={searchUsers}>username</button>
-                            <button type="button" className="btn mb-0 ml-1" id="topic-btn" onClick={searchTopics}>topic</button>
-                        </form>
+            <div id="banner" className = "row align-items">
+                <div className = "text-center">
+                    <h2>Search</h2>
+                    <p>Search by username or tweet content.</p>
+                </div>
+            </div>   
+            <div className = "container"> 
+               <div className="row mb-0">
+                    <form className="text-center form-control-lg mr-1">
+                        <input
+                            value={searchTerm}
+                            type="text"
+                            placeholder="Enter search here.."
+                            className="form-control-sm"
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            autoFocus
+                        >
+                        </input>
+                        <button type="button" className="btn mb-0 ml-1 mr-1" id="user-btn" onClick={searchUsers}>username</button>
+                        <button type="button" className="btn mb-0 ml-1" id="topic-btn" onClick={searchTopics}>topic</button>
+                    </form>
                         
-                    </div>
-                    <div className="row">
-                        <CloseTweetsButton
-                            show={show}
-                            closeTweets={closeTweets}
-                        />
-                    </div>
+                </div>
+                <div className="row mb-2">
+                    <CloseTweetsButton
+                        show={show}
+                        closeTweets={closeTweets}
+                    />
+                </div>
                     
-                    <div className="row">
-                        <div id="topic-modal" className="m-auto container container-sm">
-                            {topicSearchCards}
-                        </div>
-                        <div id="modal" className="m-auto container container-sm">
-                            {userSearchCards}
-                        </div>
-                        
+                <div className="row">
+                    <div id="topic-modal" className="m-auto container container-sm">
+                        {topicSearchCards}
                     </div>
+                    <div id="modal" className="pt-3 mt-2 m-auto container container-sm">
+                        {userSearchCards}
+                    </div>
+                        
+                </div>
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ import "./Nav.css";
 function Nav(props) {
     return(
         <div className = "navigation">
-            <nav className = "navbar-expand navbark-dark bg-light">
+            <nav className = "navbar-expand navbark-dark">
                 <div className = "container">
                     <Link className = "navbar-brand" to="/">
                     </Link>

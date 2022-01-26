@@ -15,6 +15,10 @@ function Favorites() {
     const [show, setShow] = useState(false);
 
     let randomIndex = Math.floor(Math.random() * 10);
+
+    useEffect(() => {
+        console.log(tweetTimeline)
+    }, [tweetTimeline]);
     
 
     useEffect(() => {
@@ -122,7 +126,7 @@ function Favorites() {
                     <div className="col-2"></div>
                     <div className="col-8">
                         <div className="user-card"
-                            onClick = {() => {setShow(true); getHeadspaceTweet() }}>
+                            onClick = {() => {getHeadspaceTweet() }}>
                             <UserCard userInfo={headspaceInfo} />
                         </div>
                     </div> 

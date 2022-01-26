@@ -118,7 +118,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
     
     return (
         tweetTimeline && randomIndex && (
-        <div id="favorites-modal" className="container border border-dark">
+        <div id="favorites-modal" className="container border border-dark rounded-1">
             <div className="row">
                 <div className="col-2">
                     <img id="profile-pic"
@@ -146,6 +146,9 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                 <div className="col-10 text-start">
                     <p className="text-sm-start">{tweet.data[randomIndex].text}</p>
                 </div>
+            </div>
+            <div className="row">
+                
             </div>
             <div className="row">
                 <div className="col-6">

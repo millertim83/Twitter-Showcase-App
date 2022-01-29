@@ -4,7 +4,7 @@ import check from "../images/check.png";
 import heart from "../images/heart.png";
 import retweet from "../images/retweet.png";
 
-export default function TweetCard({ show, tweetResults, userInfo, tweet }) {
+export default function TweetCard({ show, tweetResults, tweet }) {
     function formatTweetTime(createdAt) {
         let dateArray = createdAt.split("-");
         let year = dateArray[0];
@@ -117,20 +117,20 @@ export default function TweetCard({ show, tweetResults, userInfo, tweet }) {
     return (
         tweetResults && (
             <div>
-                <div id="tweet-modal" className="container-sm pt-2 mt-2 mb-2" key={userInfo.id}>
+                <div id="tweet-modal" className="container-sm pt-2 mt-2 mb-2" key={tweet.id}>
                     <div className="row">
                         <div className="col-2">
                             <img id="profile-pic"
                             className="rounded-circle responsive-img"
-                            src={userInfo.profile_image_url}
-                            alt={userInfo.name}>
+                            src={tweet.profile_image_url}
+                            alt={tweet.name}>
                             </img>
                         </div>
                         <div id="name" className="col-3">
-                            <p>{userInfo.name} {userInfo.verified === true ? <img id="check" src={check}/> : null}</p>
+                            <p>{tweet.name} {tweet.verified === true ? <img id="check" src={check}/> : null}</p>
                         </div>  
                         <div className="col-3">
-                            <p id="username">{ `@${userInfo.username}` }</p>
+                            <p id="username">{ `@${tweet.username}` }</p>
                         </div>
                         <div className="col-4 mt-2">
                             <p id="date">{formatTweetTime(tweet.created_at)}</p>
@@ -153,6 +153,11 @@ export default function TweetCard({ show, tweetResults, userInfo, tweet }) {
                             <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet.public_metrics.retweet_count}</p>
                         </div>
                     </div>
+                    <div className="row">
+                        <p>{tweet.type === "video" ? <img id="video-preview-img" src={tweet.preview_image_url}/> : null}</p>
+                        <p>{tweet.type === "photo" ? <img id="photo-preview" src={tweet.url}/> : null}</p>
+                    </div>
+                    
                 </div>  
             </div> 
         )  

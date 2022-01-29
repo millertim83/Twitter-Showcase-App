@@ -9,14 +9,13 @@ function Search()  {
     
     const [searchTerm, setSearchTerm] = useState("");
     const [tweetResults, setTweetResults] = useState([]);
-    const [userInfo, setUserInfo] = useState({});
     const [show, setShow] = useState(false);
     const [topicSearchTweets, setTopicSearchTweets] = useState([]);
     const [searchError, setSearchError] = useState("");
     
     useEffect(() => {
-        console.log(`Error: ${searchError}`)
-    }, [searchError]);
+        console.log(tweetResults)
+    }, [tweetResults]);
 
     async function searchUsers() {
         await axios.get(`/api/searchUsers?search=${searchTerm}`)
@@ -25,8 +24,7 @@ function Search()  {
                 alert("No user found by that name!");
                 return;
             } 
-            setTweetResults(response.data.data);
-            setUserInfo(response.data.includes.users[0]);
+            setTweetResults(response.data);
             setShow(true);
             setTopicSearchTweets([]);
         })   
@@ -42,7 +40,6 @@ function Search()  {
             setShow(true);
             setTopicSearchTweets(response.data);
             setTweetResults([]);
-            setUserInfo([]);
         }).catch((error) => console.log(error))
     }
 
@@ -66,7 +63,6 @@ function Search()  {
                 onClose={() => setShow(false)} 
                 show={show}
                 tweetResults={tweetResults}
-                userInfo={userInfo}
                 tweet={tweet}
                 key={i}
             />
@@ -76,7 +72,6 @@ function Search()  {
     function closeTweets() {
         setShow(false);
         setTweetResults([]);
-        setUserInfo({});
         setTopicSearchTweets([]);
     }
     

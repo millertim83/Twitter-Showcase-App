@@ -25,3 +25,11 @@
 #close-btn {
     background-color: #FFC885;
 }
+
+#video-preview-img {
+    max-width: 100%;
+}
+
+#photo-preview {
+    max-width: 100%;
+}

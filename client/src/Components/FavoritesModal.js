@@ -8,6 +8,12 @@ import retweet from "../images/retweet.png";
 export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
     let tweet = tweetTimeline;
 
+    //function isVideo(randomIndex) {
+    //    if (tweet.type[randomIndex] === "video") {
+    //        return true;
+    //    }
+    //}
+
     function formatTweetTime(createdAt) {
         let dateArray = createdAt.split("-");
         let year = dateArray[0];
@@ -115,52 +121,49 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
     if (!show) {
         return null;
     }
-    
+
     return (
         tweetTimeline && randomIndex && (
-        <div id="favorites-modal" className="container border border-dark rounded-1">
-            <div className="row">
-                <div className="col-2">
-                    <img id="profile-pic"
-                        className="rounded-circle responsive-img"
-                        src={tweet.includes.users[0].profile_image_url}
-                        alt={tweet.includes.users[0].name}>
-                    </img>
+            <div id="favorites-modal" className="container border border-dark rounded-1">
+                <div className="row">
+                    <div className="col-2">
+                        <img id="profile-pic"
+                           className="rounded-circle responsive-img"
+                            src={tweet.profile_image_url}
+                            alt={tweet.name}>
+                        </img>
+                    </div>
+                    <div id="name" className="col-4">
+                        <p className="mb-0">{tweet.name} {tweet[randomIndex].verified === true ? <img id="check" src={check}/> : null}</p>
+                        <p id="username" className="mt-1">{ `@${tweet[randomIndex].username}` }</p>
+                    </div>  
+                    <div className="col-2"></div>
+                    <div className="col-4">
+                        <p id="date">{formatTweetTime(tweet[randomIndex].created_at)}</p>
+                    </div>
                 </div>
-                <div id="name" className="col-4">
-                    <p className="mb-0">{tweet.includes.users[0].name} {tweet.includes.users[0].verified === true ? <img id="check" src={check}/> : null}</p>
-                    <p id="username" className="mt-1">{ `@${tweet.includes.users[0].username}` }</p>
-                </div>  
-                <div className="col-2">
-
+                <div className="row">
+                    <div className="col-2"></div>
+                    <div className="col-10 text-start">
+                        <p className="text-sm-start">{tweet[randomIndex].text}</p>
+                    </div>
                 </div>
-                <div className="col-4">
-                    <p id="date">{formatTweetTime(tweet.data[randomIndex].created_at)}</p>
-                </div>
-                
-            </div>
-            <div className="row">
-                <div className="col-2">
-
-                </div>
-                <div className="col-10 text-start">
-                    <p className="text-sm-start">{tweet.data[randomIndex].text}</p>
-                </div>
-            </div>
-            <div className="row">
-                
-            </div>
-            <div className="row">
-                <div className="col-6">
-                    <p>{<img id="heart" src={heart} alt="likes:" />} {tweet.data[randomIndex].public_metrics.like_count}</p>
-                </div>
-                <div className="col-6">
-                    <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet.data[randomIndex].public_metrics.retweet_count}</p>
-                </div>
-            </div>
             
-            <button id = "close-btn" className="btn" onClick={onClose}>Close</button>
-        </div>
-        )
+                <div className="row">
+                    <div className="col-6">
+                        <p>{<img id="heart" src={heart} alt="likes:" />} {tweet[randomIndex].public_metrics.like_count}</p>
+                    </div>
+                    <div className="col-6">
+                        <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet[randomIndex].public_metrics.retweet_count}</p>
+                    </div>
+                </div>
+                <div className="row">
+                    <p>{tweet[randomIndex].type === "video" ? <img id="video-preview-img" src={tweet[randomIndex].preview_image_url}/> : null}</p>
+                    <p>{tweet[randomIndex].type === "photo" ? <img id="photo-preview" src={tweet[randomIndex].url}/> : null}</p>
+                </div>
+        
+                <button id = "close-btn" className="btn" onClick={onClose}>Close</button>
+            </div>
+    )
     )
 }

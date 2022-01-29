@@ -129,8 +129,8 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                     <div className="col-2">
                         <img id="profile-pic"
                            className="rounded-circle responsive-img"
-                            src={tweet.profile_image_url}
-                            alt={tweet.name}>
+                            src={tweet[randomIndex].profile_image_url}
+                            alt={tweet[randomIndex].name}>
                         </img>
                     </div>
                     <div id="name" className="col-4">

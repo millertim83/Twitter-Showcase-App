@@ -5,14 +5,9 @@ import heart from "../images/heart.png";
 import retweet from "../images/retweet.png";
 
 
-export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex}) {
+export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex, userIndex }) {
     let tweet = tweetTimeline;
-
-    //function isVideo(randomIndex) {
-    //    if (tweet.type[randomIndex] === "video") {
-    //        return true;
-    //    }
-    //}
+    
 
     function formatTweetTime(createdAt) {
         let dateArray = createdAt.split("-");
@@ -129,13 +124,13 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                     <div className="col-2">
                         <img id="profile-pic"
                            className="rounded-circle responsive-img"
-                            src={tweet[randomIndex].profile_image_url}
-                            alt={tweet[randomIndex].name}>
+                            src={tweet[userIndex].profile_image_url}
+                            alt={tweet[userIndex].name}>
                         </img>
                     </div>
                     <div id="name" className="col-4">
-                        <p className="mb-0">{tweet.name} {tweet[randomIndex].verified === true ? <img id="check" src={check}/> : null}</p>
-                        <p id="username" className="mt-1">{ `@${tweet[randomIndex].username}` }</p>
+                        <p className="mb-0">{tweet[userIndex].name} {tweet[userIndex].verified === true ? <img id="check" src={check}/> : null}</p>
+                        <p id="username" className="mt-1">{ `@${tweet[userIndex].username}` }</p>
                     </div>  
                     <div className="col-2"></div>
                     <div className="col-4">

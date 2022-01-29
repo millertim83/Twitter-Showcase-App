@@ -13,6 +13,11 @@ function Favorites() {
     const [tweetTimeline, setTweetTimeline] = useState("");
     const [show, setShow] = useState(false);
     let randomIndex = Math.floor(Math.random() * 10);
+    let userIndex = tweetTimeline.length - 1;
+
+    useEffect(() => {
+        console.log(tweetTimeline)
+    }, [tweetTimeline]);
 
     useEffect(() => {
         retrieveData()
@@ -119,7 +124,7 @@ function Favorites() {
                     <div className="col-2"></div>
                     <div className="col-8">
                         <div className="user-card"
-                            onClick = {() => { setShow(true); getHeadspaceTweet() }}>
+                            onClick = {() => { setShow(true), getHeadspaceTweet() }}>
                             <UserCard userInfo={headspaceInfo} />
                         </div>
                     </div> 
@@ -143,6 +148,7 @@ function Favorites() {
                     onClose={() => setShow(false)}
                     onClose={() => setTweetTimeline("")} 
                     show={show} 
+                    userIndex={userIndex}
                     tweetTimeline={tweetTimeline} />
             </div>  
         </div>

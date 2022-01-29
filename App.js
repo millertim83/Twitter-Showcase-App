@@ -243,7 +243,7 @@ app.get("/api/searchUsers", async(req, res) => {
     let userID = "";
     let tweets = [];
     let media = [];
-    let user = [];
+    let user = {};
     const search = req.query.search;
     await axios
         .get(`https://api.twitter.com/2/users/by/username/${search}`, {headers: { Authorization: `Bearer ${token}`,}})
@@ -255,7 +255,7 @@ app.get("/api/searchUsers", async(req, res) => {
                 .then((response) => {
                     tweets = response.data.data;
                     media = response.data.includes.media;
-                    user = response.data.includes.users;
+                    user = response.data.includes.users[0];
 
                     function mergeMedia(tweetData, mediaData) {
                         return tweetData.map((tweet) => {
@@ -268,17 +268,17 @@ app.get("/api/searchUsers", async(req, res) => {
                             } else return tweet;
                         });
                     }
-            
-                    function mergeUser(tweetsArray, userArray) {
-                        return tweetsArray.map((tweet) => {
-                            const userObj = userArray.find((user) => user.id === tweet.author_id);
-                            return { ...tweet, ...userObj  };
-                        });
+
+                    function addUserObj(array, obj) {
+                        for (let i = 0; i < array.length; i++) {
+                            array[i].user = obj;
+                        }
                     }
-        
+            
                     let tweetsWithMedia = mergeMedia(tweets, media); 
-                    let fullResponse = mergeUser(tweetsWithMedia, user);
-                    res.send(fullResponse); 
+                    let fullResponse = addUserObj(tweetsWithMedia, user);
+                    res.send(tweetsWithMedia); 
+                    console.log(fullResponse);
                 })
                 .catch((error) => console.log(error));
         }).catch((error) => {

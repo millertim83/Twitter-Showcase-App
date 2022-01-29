@@ -11,7 +11,8 @@ function Search()  {
     const [tweetResults, setTweetResults] = useState([]);
     const [show, setShow] = useState(false);
     const [topicSearchTweets, setTopicSearchTweets] = useState([]);
-    const [searchError, setSearchError] = useState("");
+    const [userInfo, setUserInfo] = useState("");
+    
     
     useEffect(() => {
         console.log(tweetResults)
@@ -37,7 +38,7 @@ function Search()  {
                 alert("No topics found!");
                 return;
             }
-            setShow(true);
+            //setShow(true);
             setTopicSearchTweets(response.data);
             setTweetResults([]);
         }).catch((error) => console.log(error))

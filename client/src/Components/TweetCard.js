@@ -122,15 +122,15 @@ export default function TweetCard({ show, tweetResults, tweet }) {
                         <div className="col-2">
                             <img id="profile-pic"
                             className="rounded-circle responsive-img"
-                            src={tweet.profile_image_url}
-                            alt={tweet.name}>
+                            src={tweet.user.profile_image_url}
+                            alt={tweet.user.name}>
                             </img>
                         </div>
                         <div id="name" className="col-3">
-                            <p>{tweet.name} {tweet.verified === true ? <img id="check" src={check}/> : null}</p>
+                            <p>{tweet.user.name} {tweet.user.verified === true ? <img id="check" src={check}/> : null}</p>
                         </div>  
                         <div className="col-3">
-                            <p id="username">{ `@${tweet.username}` }</p>
+                            <p id="username">{ `@${tweet.user.username}` }</p>
                         </div>
                         <div className="col-4 mt-2">
                             <p id="date">{formatTweetTime(tweet.created_at)}</p>

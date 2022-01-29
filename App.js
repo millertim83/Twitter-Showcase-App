@@ -79,34 +79,113 @@ app.get("/api/deepakInfo", async(req, res) => {
 });
 
 app.get("/api/dalaiTweets", async(req, res) => {
-    let tweetTimeline = "";
+    let tweets = [];
+    let media = [];
+    let user = [];
     await axios
         .get(dalaiTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            tweetTimeline=response.data;
-            res.send(tweetTimeline);
+            tweets = response.data.data;
+            media = response.data.includes.media;
+            user = response.data.includes.users;
+
+            function mergeMedia(tweetData, mediaData) {
+                return tweetData.map((tweet) => {
+                    if (tweet.attachments) {
+                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
+                        if (matchMedia) {
+                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
+                            return { ...tweet, ...mediaObj };
+                        } 
+                    } else return tweet;
+                });
+            }
+            
+            function mergeUser(tweetsArray, userArray) {
+                return tweetsArray.map((tweet) => {
+                    const userObj = userArray.find((user) => user.id === tweet.author_id);
+                    return { ...tweet, ...userObj  };
+                });
+            }
+        
+            let tweetsWithMedia = mergeMedia(tweets, media); 
+            let fullResponse = mergeUser(tweetsWithMedia, user);
+            res.send(fullResponse); 
+            
         })
         .catch((error) => console.log(error));
 });
 
 app.get("/api/sadhTweets", async(req, res) => {
-    let tweetTimeline = "";
+    let tweets = [];
+    let media = [];
+    let user = [];
     await axios
         .get(sadhTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            tweetTimeline=response.data;
-            res.send(tweetTimeline);
+            tweets = response.data.data;
+            media = response.data.includes.media;
+            user = response.data.includes.users;
+
+            function mergeMedia(tweetData, mediaData) {
+                return tweetData.map((tweet) => {
+                    if (tweet.attachments) {
+                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
+                        if (matchMedia) {
+                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
+                            return { ...tweet, ...mediaObj };
+                        } 
+                    } else return tweet;
+                });
+            }
+    
+            function mergeUser(tweetsArray, userArray) {
+                return tweetsArray.map((tweet) => {
+                    const userObj = userArray.find((user) => user.id === tweet.author_id);
+                    return { ...tweet, ...userObj  };
+                });
+            }
+
+            let tweetsWithMedia = mergeMedia(tweets, media); 
+            let fullResponse = mergeUser(tweetsWithMedia, user);
+            res.send(fullResponse);
         })
         .catch((error) => console.log(error));
 });
 
 app.get("/api/eckhartTweets", async(req, res) => {
-    let tweetTimeline = "";
+    let tweets = [];
+    let media = [];
+    let user = [];
     await axios
         .get(eckhartTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            tweetTimeline=response.data;
-            res.send(tweetTimeline);
+            tweets = response.data.data;
+            media = response.data.includes.media;
+            user = response.data.includes.users;
+
+            function mergeMedia(tweetData, mediaData) {
+                return tweetData.map((tweet) => {
+                    if (tweet.attachments) {
+                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
+                        if (matchMedia) {
+                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
+                            return { ...tweet, ...mediaObj };
+                        } 
+                    } else return tweet;
+                });
+            }
+            
+            function mergeUser(tweetsArray, userArray) {
+                return tweetsArray.map((tweet) => {
+                    const userObj = userArray.find((user) => user.id === tweet.author_id);
+                    return { ...tweet, ...userObj  };
+                });
+            }
+        
+            let tweetsWithMedia = mergeMedia(tweets, media); 
+            let fullResponse = mergeUser(tweetsWithMedia, user);
+            res.send(fullResponse); 
         })
         .catch((error) => console.log(error));
 });
@@ -143,12 +222,8 @@ app.get("/api/deepakTweets", async(req, res) => {
         
             let tweetsWithMedia = mergeMedia(tweets, media); 
             let fullResponse = mergeUser(tweetsWithMedia, user);
-            res.send(fullResponse);
-            //res.send(tweetsWithMedia); 
-            //res.send(media);
-            //res.send(user);
-            //res.send(tweets);
-            console.log(tweetsWithMedia);
+            res.send(fullResponse); 
+ 
         })
         .catch((error) => console.log(error));
 });
@@ -160,30 +235,32 @@ app.get("/api/headspaceTweets", async(req, res) => {
     await axios
         .get(headspaceTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
         .then((response) => {
-            tweets.push(response.data.data);
-            user.push(response.data.includes.users);
-            media.push(response.data.includes.media);
+            tweets = response.data.data;
+            media = response.data.includes.media;
+            user = response.data.includes.users;
 
-            function mergeMedia(arr1, arr2) {
-                return arr1.map((item, i) => {
-                    if ('attachments' in item)
-                        if (item.attachments.media_keys[0] === arr2[i].media_key) {
-                            return Object.assign({}, item, arr2[i]);
+            function mergeMedia(tweetData, mediaData) {
+                return tweetData.map((tweet) => {
+                    if (tweet.attachments) {
+                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
+                        if (matchMedia) {
+                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
+                            return { ...tweet, ...mediaObj };
                         } 
-                })
-            }
-
-            function mergeUser(arr1, arr2) {
-                return arr1.map((item) => {
-                        return Object.assign({}, item, arr2[0]);
+                    } else return tweet;
                 });
-            } 
+            }
             
-            const tweetsWithMedia = mergeMedia(tweets, media);
-            const fullResponse = mergeUser(tweetsWithMedia, user);
-            
-            
-            res.send(fullResponse);
+            function mergeUser(tweetsArray, userArray) {
+                return tweetsArray.map((tweet) => {
+                    const userObj = userArray.find((user) => user.id === tweet.author_id);
+                    return { ...tweet, ...userObj  };
+                });
+            }
+        
+            let tweetsWithMedia = mergeMedia(tweets, media); 
+            let fullResponse = mergeUser(tweetsWithMedia, user);
+            res.send(fullResponse);   
         })
         .catch((error) => console.log(error));
 });
@@ -241,15 +318,3 @@ app.get("/api/searchTopics", async(req, res) => {
         });                
 })
     
-        
-/*
-
-   function mergeUser(arr1, arr2) {
-                return arr1.map((item) => {
-                        return Object.assign({}, item, arr2[0]);
-                });
-            } 
-
-
-            //const fullResponse = mergeUser(tweetWithMedia, user);
-            */

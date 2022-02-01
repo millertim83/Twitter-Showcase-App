@@ -82,7 +82,44 @@ function Favorites() {
     }
 
     return (
-        <div className = "body">
+        <div className="body">
+            <div id="banner" className = "container-sm mx-auto">
+                <h2 className = "pt-2">My Faves</h2>
+                <h6 className = "pt-1">Click on a user to display a random tweet!</h6>
+            </div>
+            <div id="user-container" className="container-sm mt-3 border border-dark">
+                <div className="user-card text-center"
+                    onClick = {() => { setShow(true); getDalaiTweet() }}>
+                    <UserCard userInfo={dalaiLamaInfo} />   
+                </div>
+                <div className="user-card text-center"
+                    onClick = {() => {setShow(true); getSadhTweet() }}>
+                    <UserCard userInfo={sadhGuruInfo} />
+                </div> 
+                <div className="user-card text-center"
+                    onClick = {() => { setShow(true); getEckhartTweet() }}>
+                    <UserCard userInfo={eckhartTolleInfo} />
+                </div>
+                <div className="user-card"
+                    onClick = {() => { setShow(true), getHeadspaceTweet() }}>
+                    <UserCard userInfo={headspaceInfo} />
+                </div> 
+                <div className="user-card"
+                    onClick = {() => { setShow(true), getDeepakTweet() }}>
+                    <UserCard userInfo={deepakChopraInfo} />
+                </div>
+
+            </div>
+
+        </div>
+             
+        
+    );
+}
+
+export default Favorites;
+/*
+<div className = "body">
             <div id="banner" className = "row">
                 <h2 className = "pt-2">My Faves</h2>
                 <h6 className = "pt-1">Click on a user to display a random tweet!</h6>
@@ -120,10 +157,5 @@ function Favorites() {
                     tweetTimeline={tweetTimeline} />
             </div>  
         </div>
-             
-        
-    );
-}
 
-export default Favorites;
-
+*/

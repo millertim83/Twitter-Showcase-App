@@ -278,7 +278,6 @@ app.get("/api/searchUsers", async(req, res) => {
                     let tweetsWithMedia = mergeMedia(tweets, media); 
                     let fullResponse = addUserObj(tweetsWithMedia, user);
                     res.send(tweetsWithMedia); 
-                    console.log(fullResponse);
                 })
                 .catch((error) => console.log(error));
         }).catch((error) => {

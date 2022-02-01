@@ -1,6 +1,11 @@
+@media all and (max-width: 500px) {
+    #favorites-modal {
+        width: 90%;
+    }
+}
+
 #favorites-modal {
-    background-color: white;
-    max-width: 50%;
+    background-color: white; 
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -15,11 +20,17 @@
 }
 
 #name {
-    font-size: .85em;
+    font-size: .7em;
 }
 
+
 #username {
+    font-size: .7em;
+}
+
+#tweet-text {
     font-size: .8em;
+    font-family: "Ubuntu";
 }
 
 #close-btn {
@@ -27,9 +38,9 @@
 }
 
 #video-preview-img {
-    max-width: 100%;
+    max-width: 70%;
 }
 
 #photo-preview {
-    max-width: 100%;
+    max-width: 70%;
 }

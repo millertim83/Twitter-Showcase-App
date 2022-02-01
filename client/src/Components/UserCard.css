@@ -1,7 +1,21 @@
+@media all and (max-width: 500px) {
+    #user-card {
+        width: 90%;
+    }
+}
+
+@media all and (max-width: 7500px) {
+    #user-card {
+        width: 50%;
+    }
+}
+
+
+
 #user-card {
-    min-width: 300px;
-    max-width: 350px;
-    cursor: pointer;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #name {

@@ -6,11 +6,21 @@
     
 }
 
-#frustrated {
-    max-height: 200px;
-    max-width: 200px;
-    flex-grow: 0;
+@media screen and (max-width: 500px) {
+    img {
+        height: 150px;
+        width: 150px;
+    }
 }
+
+@media screen and (max-width: 800px) {
+    img {
+        height: 220px;
+        width: 220px;
+    }
+}
+
+
 
 #page-title {
     width: 100%;

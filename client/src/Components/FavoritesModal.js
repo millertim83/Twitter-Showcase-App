@@ -119,7 +119,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
 
     return (
         tweetTimeline && randomIndex && (
-            <div id="favorites-modal" className="container border border-dark rounded-1">
+            <div id="favorites-modal" className="container border border-dark rounded-1 mt-0">
                 <div className="row">
                     <div className="col-2">
                         <img id="profile-pic"
@@ -128,8 +128,8 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                             alt={tweet[userIndex].name}>
                         </img>
                     </div>
-                    <div id="name" className="col-4">
-                        <p className="mb-0">{tweet[userIndex].name} {tweet[userIndex].verified === true ? <img id="check" src={check}/> : null}</p>
+                    <div className="col-4">
+                        <p id = "name" className="mb-0">{tweet[userIndex].name} {tweet[userIndex].verified === true ? <img id="check" src={check}/> : null}</p>
                         <p id="username" className="mt-1">{ `@${tweet[userIndex].username}` }</p>
                     </div>  
                     <div className="col-2"></div>
@@ -140,7 +140,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                 <div className="row">
                     <div className="col-2"></div>
                     <div className="col-10 text-start">
-                        <p className="text-sm-start">{tweet[randomIndex].text}</p>
+                        <p id = "tweet-text" className="text-sm-start">{tweet[randomIndex].text}</p>
                     </div>
                 </div>
             

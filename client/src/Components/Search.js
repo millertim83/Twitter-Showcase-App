@@ -38,7 +38,7 @@ function Search()  {
                 alert("No topics found!");
                 return;
             }
-            //setShow(true);
+            setShow(true);
             setTopicSearchTweets(response.data);
             setTweetResults([]);
         }).catch((error) => console.log(error))

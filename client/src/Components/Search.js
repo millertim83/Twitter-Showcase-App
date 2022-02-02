@@ -6,13 +6,10 @@ import TopicSearchCards from "./TopicSearchCards";
 import CloseTweetsButton from "./CloseTweetsButton";
 
 function Search()  {
-    
     const [searchTerm, setSearchTerm] = useState("");
     const [tweetResults, setTweetResults] = useState([]);
     const [show, setShow] = useState(false);
     const [topicSearchTweets, setTopicSearchTweets] = useState([]);
-    const [userInfo, setUserInfo] = useState("");
-    
     
     useEffect(() => {
         console.log(tweetResults)
@@ -80,13 +77,13 @@ function Search()  {
 
     return (
         <div className = "body">
-            <div id="banner" className = "row align-items">
-                <div className = "text-center">
-                    <h2>Search</h2>
-                    <p>Search by username or tweet content.</p>
+            <div id="banner" className="row align-items">
+                <div className="text-center">
+                    <h2 className="mt-2">Search</h2>
+                    <p id="subtitle">Search by username (exact) or tweet content.</p>
                 </div>
             </div>   
-            <div className = "container"> 
+            <div className="container"> 
                <div className="row mb-0">
                     <form className="text-center form-control-lg mr-1">
                         <input
@@ -98,12 +95,12 @@ function Search()  {
                             autoFocus
                         >
                         </input>
-                        <button type="button" className="btn mb-0 ml-1 mr-1" id="user-btn" onClick={searchUsers}>username</button>
-                        <button type="button" className="btn mb-0 ml-1" id="topic-btn" onClick={searchTopics}>topic</button>
+                        <button type="button" className="btn mb-0 ml-1 mr-1 pl-0 pr-0" id="user-btn" onClick={searchUsers}>username</button>
+                        <button type="button" className="btn mb-0 ml-1 pl-0 pr-0" id="topic-btn" onClick={searchTopics}>topic</button>
                     </form>
                         
                 </div>
-                <div className="row mb-2">
+                <div className="row mb-2 text-left">
                     <CloseTweetsButton
                         show={show}
                         closeTweets={closeTweets}

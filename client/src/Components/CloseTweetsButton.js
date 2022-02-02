@@ -9,7 +9,7 @@ export default function CloseTweetsButton( {show, closeTweets } ) {
 
     return (
         <div>
-            <button id="close-tweets-btn" className="btn" onClick={closeTweets}>Close Tweets</button>
+            <button id="close-tweets-btn" className="btn mb-3" onClick={closeTweets}>Close Tweets</button>
         </div>
     )
 }

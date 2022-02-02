@@ -51,10 +51,9 @@ export default function UserCard({userInfo})  {
         return(`${month} ${year}`) ;
     } 
 
-
     return (
         userInfo && (
-            <div id="user-card" className="m-2 p-2 bg-white shadow mx-auto rounded-1">
+            <div id="user-card" className="container-sm m-2 p-2 bg-white shadow mx-auto rounded-1">
                 <div className="row">
                         <div className="col-2">
                             <img id="profile-pic" 

@@ -11,13 +11,10 @@ function Favorites() {
     const [headspaceInfo, setHeadspaceInfo] = useState("");
     const [deepakChopraInfo, setDeepakChopraInfo] = useState("");
     const [tweetTimeline, setTweetTimeline] = useState("");
+    
     const [show, setShow] = useState(false);
     let randomIndex = Math.floor(Math.random() * 10);
     let userIndex = tweetTimeline.length - 1;
-
-    useEffect(() => {
-        console.log(tweetTimeline)
-    }, [tweetTimeline]);
 
     useEffect(() => {
         retrieveData()
@@ -87,7 +84,7 @@ function Favorites() {
                 <h2 className = "pt-2">My Faves</h2>
                 <h6 className = "pt-1">Click on a user to display a random tweet!</h6>
             </div>
-            <div id="user-container" className="container-sm mt-3 border border-dark">
+            <div id="user-container" className="container-sm mt-3 rounded-1">
                 <div className="user-card text-center"
                     onClick = {() => { setShow(true); getDalaiTweet() }}>
                     <UserCard userInfo={dalaiLamaInfo} />   
@@ -108,8 +105,16 @@ function Favorites() {
                     onClick = {() => { setShow(true), getDeepakTweet() }}>
                     <UserCard userInfo={deepakChopraInfo} />
                 </div>
-
             </div>
+            <div id="modal" className="container-sm justify-content-center mt-0 ml-auto mr-auto">
+                <FavoritesModal
+                    randomIndex={randomIndex} 
+                    onClose={() => setShow(false)}
+                    onClose={() => setTweetTimeline("")} 
+                    show={show} 
+                    userIndex={userIndex}
+                    tweetTimeline={tweetTimeline} />
+            </div>  
 
         </div>
              

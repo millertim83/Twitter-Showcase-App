@@ -1,14 +1,27 @@
 @media all and (max-width: 500px) {
     #favorites-modal {
         width: 90%;
+        margin: auto;
+    }
+}
+
+@media all and (max-width: 900px) {
+    #favorites-modal {
+        width: 60%;
+        margin: auto;
+    }
+}
+
+@media all and (min-width: 901px) {
+    #favorites-modal {
+        width: 50%;
+        margin: auto;
     }
 }
 
 #favorites-modal {
     background-color: white; 
     padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #username {
@@ -38,9 +51,9 @@
 }
 
 #video-preview-img {
-    max-width: 70%;
+    max-width: 300px;
 }
 
 #photo-preview {
-    max-width: 70%;
+    max-width: 300px;
 }

@@ -119,7 +119,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
 
     return (
         tweetTimeline && randomIndex && (
-            <div id="favorites-modal" className="container border border-dark rounded-1 mt-0">
+            <div id="favorites-modal" className="container justify-content-center border border-dark rounded-1 mt-0">
                 <div className="row">
                     <div className="col-2">
                         <img id="profile-pic"

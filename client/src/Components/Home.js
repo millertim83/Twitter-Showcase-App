@@ -12,20 +12,18 @@ function Home() {
                         <h4>A Twitter Portal</h4>
                     </div>
                 </div>
-                <div className="container mt-4">
-                    <div className="container-md d-flex flex-wrap justify-content-evenly">
-                        <div id="img-container">
-                            <img id="frustrated"
-                                className="rounded-circle"
-                                src={frustrated}
-                                alt="Frustrated guy">
-                            </img>
-                        </div>
-                        <div className=" container-sm mt-3 flex-wrap">
-                            <p id="intro" className="mt-3 pt-3">If you feel like this guy, head to the Favorites page to see some Tweets that may add some calm 
-                                to your life. Otherwise, go to the Search page to look up your favorite users or topics.</p>
-                        </div> 
+                <div className="container d-flex flex-wrap justify-content-around mt-4">
+                    <div id="img-container">
+                        <img id="frustrated"
+                            className="rounded-circle"
+                            src={frustrated}
+                            alt="Frustrated guy">
+                        </img>
                     </div>
+                    <div id="intro-container" className="container mt-3 flex-wrap align-self-center">
+                        <p id="intro" className="mt-3 pt-3">If you feel like this guy, head to the Favorites page to see some Tweets that may add some calm 
+                            to your life. Otherwise, go to the Search page to look up your favorite users or topics.</p>
+                    </div>    
                 </div>
                 
             </div>

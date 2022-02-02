@@ -6,11 +6,15 @@
     overflow-y: scroll;
 }
 
+@media  screen and (min-width: 900px) {
+    #user-container {
+        width: 60%;
+    }
+}
 
 #user-container {
     min-height: 200px;
     max-height: 700px;
-    background-color: #B37425;
     overflow-y: scroll;
 }
 
@@ -26,7 +30,7 @@
 #modal {
     z-index: 1000;
     position: absolute;
-    top: 30%;
+    top: 40%;
     min-width: 30%;
     max-width: 90%;
     margin: auto;

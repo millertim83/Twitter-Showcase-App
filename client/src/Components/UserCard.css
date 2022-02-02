@@ -1,6 +1,9 @@
-
+@media  screen and (min-width: 900px) {
+    #user-card {
+        width: 60%;
+    }
+}
 #user-card {
-    max-width: 100%;
     margin-left: 0;
     margin-right: 0;
 }

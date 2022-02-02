@@ -109,7 +109,6 @@ export default function TweetCard({ show, tweetResults, tweet }) {
         return displayedTime;
     }
     
-    
     if (!show) {
         return null;
     }
@@ -117,7 +116,7 @@ export default function TweetCard({ show, tweetResults, tweet }) {
     return (
         tweetResults && (
             <div>
-                <div id="tweet-modal" className="container-sm pt-2 mt-2 mb-2" key={tweet.id}>
+                <div id="tweet-modal" className="container  mb-2" key={tweet.id}>
                     <div className="row">
                         <div className="col-2">
                             <img id="profile-pic"
@@ -135,13 +134,9 @@ export default function TweetCard({ show, tweetResults, tweet }) {
                         <div className="col-4 mt-2">
                             <p id="date">{formatTweetTime(tweet.created_at)}</p>
                         </div>
-    
                     </div>
                     <div className="row">
-                        <div className="col-2">
-
-                        </div>
-                        <div className="col-10 text-start">
+                        <div className="col-12 text-start">
                             <p className="text-sm-start">{tweet.text}</p>
                         </div>
                     </div>

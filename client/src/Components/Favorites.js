@@ -80,9 +80,9 @@ function Favorites() {
 
     return (
         <div className="body">
-            <div id="banner" className = "container-sm mx-auto">
-                <h2 className = "pt-2">My Faves</h2>
-                <h6 className = "pt-1">Click on a user to display a random tweet!</h6>
+            <div id="banner" className="mb-3 text-center">
+                <h2 className="pt-2">My Faves</h2>
+                <h6 className="pt-1">Click on a user to display a random tweet!</h6>
             </div>
             <div id="user-container" className="container-sm mt-3 rounded-1">
                 <div className="user-card text-center"
@@ -108,12 +108,12 @@ function Favorites() {
             </div>
             <div id="modal" className="container-sm justify-content-center mt-0 ml-auto mr-auto">
                 <FavoritesModal
-                    randomIndex={randomIndex} 
-                    onClose={() => setShow(false)}
-                    onClose={() => setTweetTimeline("")} 
-                    show={show} 
-                    userIndex={userIndex}
-                    tweetTimeline={tweetTimeline} />
+                    randomIndex = {randomIndex} 
+                    onClose = {() => setShow(false)}
+                    onClose = {() => setTweetTimeline("")} 
+                    show = {show} 
+                    userIndex = {userIndex}
+                    tweetTimeline = {tweetTimeline} />
             </div>  
 
         </div>
@@ -123,44 +123,5 @@ function Favorites() {
 }
 
 export default Favorites;
-/*
-<div className = "body">
-            <div id="banner" className = "row">
-                <h2 className = "pt-2">My Faves</h2>
-                <h6 className = "pt-1">Click on a user to display a random tweet!</h6>
-            </div>
-            <div id="user-container" className="mx-auto">
-                <div className="user-card text-center"
-                    onClick = {() => { setShow(true); getDalaiTweet() }}>
-                    <UserCard userInfo={dalaiLamaInfo} />   
-                </div>
-                <div className="user-card text-center"
-                    onClick = {() => {setShow(true); getSadhTweet() }}>
-                    <UserCard userInfo={sadhGuruInfo} />
-                </div> 
-                <div className="user-card text-center"
-                    onClick = {() => { setShow(true); getEckhartTweet() }}>
-                    <UserCard userInfo={eckhartTolleInfo} />
-                </div>
-                <div className="user-card"
-                    onClick = {() => { setShow(true), getHeadspaceTweet() }}>
-                    <UserCard userInfo={headspaceInfo} />
-                </div> 
-                <div className="user-card"
-                    onClick = {() => { setShow(true), getDeepakTweet() }}>
-                    <UserCard userInfo={deepakChopraInfo} />
-                </div>
-                
-            </div>   
-            <div id="modal" className="mt-0 ml-auto mr-auto">
-                <FavoritesModal
-                    randomIndex={randomIndex} 
-                    onClose={() => setShow(false)}
-                    onClose={() => setTweetTimeline("")} 
-                    show={show} 
-                    userIndex={userIndex}
-                    tweetTimeline={tweetTimeline} />
-            </div>  
-        </div>
 
-*/
+    

@@ -1,8 +1,45 @@
 #tweet-modal {
     background-color: white;
-    padding: 20px;
+    max-width: 500px;
+    max-width: 90%;
 }
 
 #username {
     color: gray;
+}
+
+@media screen and (max-width: 500px) {
+    #check {
+        height: 12px;
+        width: 12px;
+    }
+
+    #heart {
+        height: 12px;
+        width: 12px;
+    }
+
+    #retweet {
+        height: 12px;
+        width: 12px;
+    }
+    
+}
+
+@media screen and (min-width: 501px) {
+    #check {
+        height: 16px;
+        width: 16px;
+    }
+
+    #heart {
+        height: 16px;
+        width: 16px;
+    }
+
+    #retweet {
+        height: 16px;
+        width: 16px;
+    }
+    
 }

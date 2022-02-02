@@ -134,13 +134,9 @@ export default function topicSearchCards({ show, onClose, topicSearchTweets, twe
                         <div className="col-4">
                             <p id="date">{formatTweetTime(tweet.created_at)}</p>
                         </div>
-    
                     </div>
                     <div className="row">
-                        <div className="col-2">
-
-                        </div>
-                        <div className="col-10 text-start">
+                        <div className="col-12 text-start">
                             <p className="text-sm-start">{tweet.text}</p>
                         </div>
                     </div>

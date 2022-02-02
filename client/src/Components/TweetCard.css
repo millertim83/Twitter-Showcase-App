@@ -1,6 +1,7 @@
 #tweet-modal {
     background-color: white;
     max-width: 500px;
+    max-width: 90%;
 }
 
 #username {

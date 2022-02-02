@@ -74,7 +74,7 @@ export default function UserCard({userInfo})  {
                 </div>
                 <div  className="row">
                     <div className="col-3"></div>
-                    <div id = "followers" className="col-6">
+                    <div id="followers" className="col-6">
                         {`Followers: ${userData.data.public_metrics.followers_count}`}
                     </div>
                     <div className="col-3"></div>

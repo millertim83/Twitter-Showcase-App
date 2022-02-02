@@ -11,10 +11,6 @@ function Search()  {
     const [show, setShow] = useState(false);
     const [topicSearchTweets, setTopicSearchTweets] = useState([]);
     
-    useEffect(() => {
-        console.log(tweetResults)
-    }, [tweetResults]);
-
     async function searchUsers() {
         await axios.get(`/api/searchUsers?search=${searchTerm}`)
         .then(response => { 
@@ -73,8 +69,6 @@ function Search()  {
         setTopicSearchTweets([]);
     }
     
-
-
     return (
         <div className = "body">
             <div id="banner" className="row align-items">
@@ -100,18 +94,18 @@ function Search()  {
                     </form>
                         
                 </div>
-                <div className="row mb-2 text-left">
+                <div className="row mb-2 text-center">
                     <CloseTweetsButton
                         show={show}
                         closeTweets={closeTweets}
                     />
                 </div>
                     
-                <div className="row">
-                    <div id="topic-modal" className="m-auto container container-sm">
+                <div className="container-sm">
+                    <div id="topic-modal" className="position-absolute m-auto container container-sm">
                         {topicSearchCards}
                     </div>
-                    <div id="modal" className="pt-3 mt-2 m-auto container container-sm">
+                    <div id="user-modal" className="position-absolute m-auto container container-sm">
                         {userSearchCards}
                     </div>
                         

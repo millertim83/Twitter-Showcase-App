@@ -20,8 +20,6 @@
     }
 }
 
-
-
 #page-title {
     width: 100%;
 }
@@ -45,4 +43,9 @@
 #intro {
     background-color: #82D5FF;
     font-family: "Ubuntu Mono";
+}
+
+#caption {
+    font-family: "Ubuntu Mono";
+    font-size: .65em;
 }

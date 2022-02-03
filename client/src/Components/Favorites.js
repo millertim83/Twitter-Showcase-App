@@ -90,7 +90,7 @@ function Favorites() {
                     <UserCard userInfo={dalaiLamaInfo} />   
                 </div>
                 <div className="user-card text-center"
-                    onClick = {() => {setShow(true); getSadhTweet() }}>
+                    onClick = {() => { setShow(true); getSadhTweet() }}>
                     <UserCard userInfo={sadhGuruInfo} />
                 </div> 
                 <div className="user-card text-center"

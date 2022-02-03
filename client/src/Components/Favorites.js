@@ -98,11 +98,11 @@ function Favorites() {
                     <UserCard userInfo={eckhartTolleInfo} />
                 </div>
                 <div className="user-card"
-                    onClick = {() => { setShow(true), getHeadspaceTweet() }}>
+                    onClick = {() => { setShow(true); getHeadspaceTweet() }}>
                     <UserCard userInfo={headspaceInfo} />
                 </div> 
                 <div className="user-card"
-                    onClick = {() => { setShow(true), getDeepakTweet() }}>
+                    onClick = {() => { setShow(true); getDeepakTweet() }}>
                     <UserCard userInfo={deepakChopraInfo} />
                 </div>
             </div>

@@ -18,7 +18,7 @@ function Favorites() {
 
     useEffect(() => {
         retrieveData()
-    }, []);
+    });
 
     function retrieveData() {
         getDalaiInfo();
@@ -109,8 +109,7 @@ function Favorites() {
             <div id="modal" className="container-sm justify-content-center mt-0 ml-auto mr-auto">
                 <FavoritesModal
                     randomIndex = {randomIndex} 
-                    onClose = {() => setShow(false)}
-                    onClose = {() => setTweetTimeline("")} 
+                    onClose = {() => { setShow(false); setTweetTimeline("") }}
                     show = {show} 
                     userIndex = {userIndex}
                     tweetTimeline = {tweetTimeline} />

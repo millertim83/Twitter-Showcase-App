@@ -126,7 +126,7 @@ export default function topicSearchCards({ show, onClose, topicSearchTweets, twe
                             </img>
                         </div>
                         <div id="name" className="col-3">
-                            <p>{tweet.name} {tweet.verified === true ? <img id="check" src={check}/> : null}</p>
+                            <p>{tweet.name} {tweet.verified === true ? <img id="check" src={check} alt="verified"/> : null}</p>
                         </div>  
                         <div className="col-3">
                             <p id="username">{ `@${tweet.username}` }</p>

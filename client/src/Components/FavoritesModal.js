@@ -129,7 +129,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                         </img>
                     </div>
                     <div className="col-4">
-                        <p id="name" className="mb-0">{tweet[userIndex].name} {tweet[userIndex].verified === true ? <img id="check" src={check}/> : null}</p>
+                        <p id="name" className="mb-0">{tweet[userIndex].name} {tweet[userIndex].verified === true ? <img id="check" src={check} alt="verified"/> : null}</p>
                         <p id="username" className="mt-1">{ `@${tweet[userIndex].username}` }</p>
                     </div>  
                     <div className="col-2"></div>
@@ -153,8 +153,8 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                     </div>
                 </div>
                 <div className="row">
-                    <p>{tweet[randomIndex].type === "video" ? <img id="video-preview-img" src={tweet[randomIndex].preview_image_url}/> : null}</p>
-                    <p>{tweet[randomIndex].type === "photo" ? <img id="photo-preview" src={tweet[randomIndex].url}/> : null}</p>
+                    <p>{tweet[randomIndex].type === "video" ? <img id="video-preview-img" src={tweet[randomIndex].preview_image_url} alt="video preview"/> : null}</p>
+                    <p>{tweet[randomIndex].type === "photo" ? <img id="photo-preview" src={tweet[randomIndex].url} alt="photo"/> : null}</p>
                 </div>
         
                 <button id = "close-btn" className="btn" onClick={onClose}>Close</button>

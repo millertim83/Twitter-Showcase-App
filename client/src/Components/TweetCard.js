@@ -126,7 +126,7 @@ export default function TweetCard({ show, tweetResults, tweet }) {
                             </img>
                         </div>
                         <div id="name" className="col-3">
-                            <p>{tweet.user.name} {tweet.user.verified === true ? <img id="check" src={check}/> : null}</p>
+                            <p>{tweet.user.name} {tweet.user.verified === true ? <img id="check" src={check} alt="verified"/> : null}</p>
                         </div>  
                         <div className="col-3">
                             <p id="username">{ `@${tweet.user.username}` }</p>
@@ -149,8 +149,8 @@ export default function TweetCard({ show, tweetResults, tweet }) {
                         </div>
                     </div>
                     <div className="row">
-                        <p>{tweet.type === "video" ? <img id="video-preview-img" src={tweet.preview_image_url}/> : null}</p>
-                        <p>{tweet.type === "photo" ? <img id="photo-preview" src={tweet.url}/> : null}</p>
+                        <p>{tweet.type === "video" ? <img id="video-preview-img" src={tweet.preview_image_url} alt="video preview"/> : null}</p>
+                        <p>{tweet.type === "photo" ? <img id="photo-preview" src={tweet.url} alt="photo"/> : null}</p>
                     </div>
                     
                 </div>  

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Search.css";
 import TweetCard from "./TweetCard.js";
 import TopicSearchCards from "./TopicSearchCards";

@@ -154,7 +154,7 @@ export default function FavoritesModal ({show, onClose, tweetTimeline, randomInd
                 </div>
                 <div className="row">
                     <p>{tweet[randomIndex].type === "video" ? <img id="video-preview-img" src={tweet[randomIndex].preview_image_url} alt="video preview"/> : null}</p>
-                    <p>{tweet[randomIndex].type === "photo" ? <img id="photo-preview" src={tweet[randomIndex].url} alt="photo"/> : null}</p>
+                    <p>{tweet[randomIndex].type === "photo" ? <img id="photo-preview" src={tweet[randomIndex].url} alt="embedded photo"/> : null}</p>
                 </div>
         
                 <button id = "close-btn" className="btn" onClick={onClose}>Close</button>

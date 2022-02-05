@@ -1,10 +1,9 @@
 const { default: axios } = require('axios');
 const express = require('express');
-const res = require('express/lib/response');
 const path = require('path');
-const port = 3001;
+require('dotenv').config();
+const port = process.env.PORT || 3001;
 const app = express();
-const config = require('dotenv').config();
 const token = process.env.BEARER_TOKEN;
 
 app.use('/', express.static(path.join(__dirname, 'client/build')));

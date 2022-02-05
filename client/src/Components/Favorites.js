@@ -18,7 +18,7 @@ function Favorites() {
 
     useEffect(() => {
         retrieveData()
-    });
+    }, []);
 
     function retrieveData() {
         getDalaiInfo();

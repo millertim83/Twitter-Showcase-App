@@ -6,7 +6,7 @@
   "scripts": {
     "heroku-prebuild": "npm install && npm i --prefix client && npm run build --prefix client",
     "client": "npm run watch --prefix client",
-    "dev": "concurrently \"nodemon app.js\" \"npm run client\""
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
@@ -15,10 +15,11 @@
     "bootstrap": "^5.0.0-alpha3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "react-router-dom": "^5.3.0"
+    "react-router-dom": "^5.3.0",
+    "concurrently": "^6.3.0"
+    
   },
   "devDependencies": {
-    "concurrently": "^6.3.0",
     "nodemon": "^2.0.14"
   }
 }

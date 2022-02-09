@@ -29,52 +29,52 @@ function Favorites() {
     }
 
     async function getDalaiInfo() {
-        await axios.get("/api/dalaiInfo")
+        await axios.get("/api/info/dalaiInfo")
         .then(response => setDalaiLamaInfo(response.data));
     }
 
     async function getSadhInfo() {
-        await axios.get("/api/sadhInfo")
+        await axios.get("/api/info/sadhInfo")
         .then(response => setSadhGuruInfo(response.data));
     }
 
     async function getEckhartInfo() {
-        await axios.get("/api/eckhartInfo")
+        await axios.get("/api/info/eckhartInfo")
         .then(response => setEckhartTolleInfo(response.data));
     }
 
     async function getheadspaceInfo() {
-        await axios.get("/api/headspaceInfo")
+        await axios.get("/api/info/headspaceInfo")
         .then(response => setHeadspaceInfo(response.data));
     }
 
     async function getdeepakInfo() {
-        await axios.get("/api/deepakInfo")
+        await axios.get("/api/info/deepakInfo")
         .then(response => setDeepakChopraInfo(response.data));
     }
 
     async function getDalaiTweet() {
-        await axios.get("/api/dalaiTweets")
+        await axios.get("/api/tweets/dalaiTweets")
         .then(response => setTweetTimeline (response.data));
     }
 
     async function getSadhTweet() {
-        await axios.get("/api/sadhTweets")
+        await axios.get("/api/tweets/sadhTweets")
         .then(response => setTweetTimeline(response.data));
     }
 
     async function getEckhartTweet() {
-        await axios.get("/api/eckhartTweets")
+        await axios.get("/api/tweets/eckhartTweets")
         .then(response => setTweetTimeline(response.data));
     }
 
     async function getHeadspaceTweet() {
-        await axios.get("/api/headspaceTweets")
+        await axios.get("/api/tweets/headspaceTweets")
         .then(response => setTweetTimeline(response.data));
     }
 
     async function getDeepakTweet() {
-        await axios.get("/api/deepakTweets")
+        await axios.get("/api/tweets/deepakTweets")
         .then(response => setTweetTimeline(response.data));
     }
 

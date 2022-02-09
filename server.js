@@ -10,231 +10,118 @@ app.use('/', express.static(path.join(__dirname, 'client/build')));
 
 app.listen(port, () => console.log(`app listening on ${port}!`));
 
-const dalaiInfoEndpoint = "https://api.twitter.com/2/users/by/username/dalailama?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
-const sadhInfoEndpoint = "https://api.twitter.com/2/users/by/username/sadhgurujv?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
-const eckhartInfoEndpoint = "https://api.twitter.com/2/users/by/username/eckharttolle?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
-const headspaceEndpoint = "https://api.twitter.com/2/users/by/username/headspace?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
-const deepakEndpoint = "https://api.twitter.com/2/users/by/username/deepakchopra?user.fields=location,created_at,profile_image_url,verified,public_metrics,description";
+//try BASE_URL and add string variables
 
-const dalaiTweetsEndpoint = "https://api.twitter.com/2/users/20609518/tweets?expansions=attachments.media_keys,author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics&media.fields=url,preview_image_url,type";
-const sadhTweetsEndpoint = "https://api.twitter.com/2/users/67611162/tweets?expansions=attachments.media_keys,author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics&media.fields=url,preview_image_url,type";
-const eckhartTweetsEndpoint = "https://api.twitter.com/2/users/14592008/tweets?expansions=attachments.media_keys,author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics&media.fields=url,preview_image_url,type";
-const headspaceTweetsEndpoint = "https://api.twitter.com/2/users/402025521/tweets?expansions=attachments.media_keys,author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics&media.fields=url,preview_image_url,type";
-const deepakTweetsEndpoint = "https://api.twitter.com/2/users/15588657/tweets?expansions=attachments.media_keys,author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics&media.fields=url,preview_image_url,type";
+const favoriteTwitterUser = {
+    dalaiLama: {
+        username: 'dalailama', 
+        user_id: '20609518', 
+        infoEndpoint: '/api/info/dalaiInfo',
+        tweetEndpoint: '/api/tweets/dalaiTweets'
+    },
+    eckhartTolle: {
+        username: 'eckharttolle', 
+        user_id: '14592008', 
+        infoEndpoint: '/api/info/eckhartInfo',
+        tweetEndpoint: '/api/tweets/eckhartTweets'
+    },
+    sadhGuru: {
+        username: 'sadhgurujv', 
+        user_id: '67611162', 
+        infoEndpoint: '/api/info/sadhInfo',
+        tweetEndpoint: '/api/tweets/sadhTweets'
+    },
+    deepakChopra: {
+        username: 'deepakchopra', 
+        user_id: '15588657', 
+        infoEndpoint: '/api/info/deepakInfo',
+        tweetEndpoint: '/api/tweets/deepakTweets'
+    },
+    headspace: {
+        username: 'headspace', 
+        user_id: '402025521', 
+        infoEndpoint: '/api/info/headspaceInfo',
+        tweetEndpoint: '/api/tweets/headspaceTweets'
+    },
+}
 
-app.get("/api/dalaiInfo", async(req, res) => {
-    let userInfo = "";
-    await axios
-        .get(dalaiInfoEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            userInfo=response.data;
-            res.send(userInfo);
-        })
-        .catch((error) => console.log(error));
-});
+generateInfoEndpoints();
 
-app.get("/api/sadhInfo", async(req, res) => {
-    let userInfo = "";
-    await axios
-        .get(sadhInfoEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            userInfo=response.data;
-            res.send(userInfo);
-        })
-        .catch((error) => console.log(error));
-});
+function generateInfoURL(username) {
+    return `https://api.twitter.com/2/users/by/username/${username}?user.fields=location,created_at,profile_image_url,verified,public_metrics,description`;
+}
 
-app.get("/api/eckhartInfo", async(req, res) => {
-    let userInfo = "";
-    await axios
-        .get(eckhartInfoEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            userInfo=response.data;
-            res.send(userInfo);
-        })
-        .catch((error) => console.log(error));
-});
+function generateTweetURL(user_id) {
+    return `https://api.twitter.com/2/users/${user_id}/tweets?expansions=attachments.media_keys,author_id&tweet.fields=attachments,public_metrics,created_at&user.fields=profile_image_url,verified,public_metrics&media.fields=url,preview_image_url,type`;
+}
 
-app.get("/api/headspaceInfo", async(req, res) => {
-    let userInfo = "";
-    await axios
-        .get(headspaceEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            userInfo=response.data;
-            res.send(userInfo);
-        })
-        .catch((error) => console.log(error));
-});
+function generateInfoEndpoints() {
+    Object.values(favoriteTwitterUser).forEach((user) => {
+        app.get(user['infoEndpoint'], async(req, res) => {
+            const queryURL = generateInfoURL(user['username']);
+            let userInfo = "";
+            await axios
+                .get(queryURL, {
+                    headers: { Authorization: `Bearer ${token}` }
+                })
+                .then((response) => {
+                    userInfo=response.data;
+                    res.send(userInfo);
+                })
+                .catch((error) => console.log(error));
+        });
 
-app.get("/api/deepakInfo", async(req, res) => {
-    let userInfo = "";
-    await axios
-        .get(deepakEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            userInfo=response.data;
-            res.send(userInfo);
-        })
-        .catch((error) => console.log(error));
-});
+    })
+}
 
-app.get("/api/dalaiTweets", async(req, res) => {
-    let tweets = [];
-    let media = [];
-    let user = {};
-    await axios
-        .get(dalaiTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            tweets = response.data.data;
-            media = response.data.includes.media;
-            user = response.data.includes.users[0];
-
-            function mergeMedia(tweetData, mediaData) {
-                return tweetData.map((tweet) => {
-                    if (tweet.attachments) {
-                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
-                        if (matchMedia) {
-                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
-                            return { ...tweet, ...mediaObj };
-                        } 
-                    } else return tweet;
-                });
-            }
-            
-            function mergeUser(tweetsArray, userArray) {
-                return tweetsArray.map((tweet) => {
-                    const userObj = userArray.find((user) => user.id === tweet.author_id);
-                    return { ...tweet, ...userObj  };
-                });
-            }
+function generateTweetEndpoints() {
+    Object.values(favoriteTwitterUser).forEach((user) => {
+        app.get(user['tweetEndpoint'], async(req, res) => {
+            let tweets = [];
+            let media = [];
+            let user = {};
+            await axios
+                .get(dalaiTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+                .then((response) => {
+                    tweets = response.data.data;
+                    media = response.data.includes.media;
+                    user = response.data.includes.users[0];
         
-            let tweetsWithMedia = mergeMedia(tweets, media); 
-            let fullResponse = tweetsWithMedia.push(user);
-            res.send(tweetsWithMedia); 
-            
-        })
-        .catch((error) => console.log(error));
-});
+                    function mergeMedia(tweetData, mediaData) {
+                        return tweetData.map((tweet) => {
+                            if (tweet.attachments) {
+                                const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
+                                if (matchMedia) {
+                                    const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
+                                    return { ...tweet, ...mediaObj };
+                                } 
+                            } else return tweet;
+                        });
+                    }
+                    
+                    function mergeUser(tweetsArray, userArray) {
+                        return tweetsArray.map((tweet) => {
+                            const userObj = userArray.find((user) => user.id === tweet.author_id);
+                            return { ...tweet, ...userObj  };
+                        });
+                    }
+                
+                    let tweetsWithMedia = mergeMedia(tweets, media); 
+                    let fullResponse = tweetsWithMedia.push(user);
+                    res.send(tweetsWithMedia); 
+                    
+                })
+                .catch((error) => console.log(error));
+        });
 
-app.get("/api/sadhTweets", async(req, res) => {
-    let tweets = [];
-    let media = [];
-    let user = {};
-    await axios
-        .get(sadhTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            tweets = response.data.data;
-            media = response.data.includes.media;
-            user = response.data.includes.users[0];
-
-            function mergeMedia(tweetData, mediaData) {
-                return tweetData.map((tweet) => {
-                    if (tweet.attachments) {
-                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
-                        if (matchMedia) {
-                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
-                            return { ...tweet, ...mediaObj };
-                        } 
-                    } else return tweet;
-                });
-            }
+    })
     
-            let tweetsWithMedia = mergeMedia(tweets, media); 
-            let fullResponse = tweetsWithMedia.push(user);
-            res.send(tweetsWithMedia);
-        })
-        .catch((error) => console.log(error));
-});
 
-app.get("/api/eckhartTweets", async(req, res) => {
-    let tweets = [];
-    let media = [];
-    let user = {};
-    await axios
-        .get(eckhartTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            tweets = response.data.data;
-            media = response.data.includes.media;
-            user = response.data.includes.users[0];
+}
 
-            function mergeMedia(tweetData, mediaData) {
-                return tweetData.map((tweet) => {
-                    if (tweet.attachments) {
-                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
-                        if (matchMedia) {
-                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
-                            return { ...tweet, ...mediaObj };
-                        } 
-                    } else return tweet;
-                });
-            }
-            
-            let tweetsWithMedia = mergeMedia(tweets, media); 
-            let fullResponse = tweetsWithMedia.push(user);
-            res.send(tweetsWithMedia); 
-        })
-        .catch((error) => console.log(error));
-});
 
-app.get("/api/deepakTweets", async(req, res) => {
-    let tweets = [];
-    let media = [];
-    let user = {};
-    await axios
-        .get(deepakTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            tweets = response.data.data;
-            media = response.data.includes.media;
-            user = response.data.includes.users[0];
 
-            function mergeMedia(tweetData, mediaData) {
-                return tweetData.map((tweet) => {
-                    if (tweet.attachments) {
-                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
-                        if (matchMedia) {
-                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
-                            return { ...tweet, ...mediaObj };
-                        } 
-                    } else return tweet;
-                });
-            }
-            
-            let tweetsWithMedia = mergeMedia(tweets, media); 
-            let fullResponse = tweetsWithMedia.push(user);
-            res.send(tweetsWithMedia); 
- 
-        })
-        .catch((error) => console.log(error));
-});
 
-app.get("/api/headspaceTweets", async(req, res) => {
-    let tweets = [];
-    let media = [];
-    let user = {};
-    await axios
-        .get(headspaceTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
-        .then((response) => {
-            tweets = response.data.data;
-            media = response.data.includes.media;
-            user = response.data.includes.users[0];
-
-            function mergeMedia(tweetData, mediaData) {
-                return tweetData.map((tweet) => {
-                    if (tweet.attachments) {
-                        const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
-                        if (matchMedia) {
-                            const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
-                            return { ...tweet, ...mediaObj };
-                        } 
-                    } else return tweet;
-                });
-            }
-            
-            let tweetsWithMedia = mergeMedia(tweets, media); 
-            let fullResponse = tweetsWithMedia.push(user);
-            res.send(tweetsWithMedia);   
-        })
-        .catch((error) => console.log(error));
-});
 
 //Search page functions//
 

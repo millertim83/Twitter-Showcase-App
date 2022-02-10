@@ -46,6 +46,7 @@ const favoriteTwitterUser = {
 }
 
 generateInfoEndpoints();
+generateTweetEndpoints();
 
 function generateInfoURL(username) {
     return `https://api.twitter.com/2/users/by/username/${username}?user.fields=location,created_at,profile_image_url,verified,public_metrics,description`;
@@ -79,51 +80,22 @@ function generateTweetEndpoints() {
         app.get(user['tweetEndpoint'], async(req, res) => {
             let tweets = [];
             let media = [];
-            let user = {};
+            let twitterUser = {};
+            const queryURL = generateTweetURL(user['user_id']);
             await axios
-                .get(dalaiTweetsEndpoint, {headers: { Authorization: `Bearer ${token}`,}})
+                .get(queryURL, {headers: { Authorization: `Bearer ${token}`,}})
                 .then((response) => {
                     tweets = response.data.data;
                     media = response.data.includes.media;
-                    user = response.data.includes.users[0];
-        
-                    function mergeMedia(tweetData, mediaData) {
-                        return tweetData.map((tweet) => {
-                            if (tweet.attachments) {
-                                const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
-                                if (matchMedia) {
-                                    const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
-                                    return { ...tweet, ...mediaObj };
-                                } 
-                            } else return tweet;
-                        });
-                    }
-                    
-                    function mergeUser(tweetsArray, userArray) {
-                        return tweetsArray.map((tweet) => {
-                            const userObj = userArray.find((user) => user.id === tweet.author_id);
-                            return { ...tweet, ...userObj  };
-                        });
-                    }
-                
+                    twitterUser = response.data.includes.users[0];
                     let tweetsWithMedia = mergeMedia(tweets, media); 
-                    let fullResponse = tweetsWithMedia.push(user);
+                    let fullResponse = tweetsWithMedia.push(twitterUser);
                     res.send(tweetsWithMedia); 
-                    
                 })
                 .catch((error) => console.log(error));
         });
-
     })
-    
-
 }
-
-
-
-
-
-//Search page functions//
 
 app.get("/api/searchUsers", async(req, res) => {
     let userID = "";
@@ -142,25 +114,6 @@ app.get("/api/searchUsers", async(req, res) => {
                     tweets = response.data.data;
                     media = response.data.includes.media;
                     user = response.data.includes.users[0];
-
-                    function mergeMedia(tweetData, mediaData) {
-                        return tweetData.map((tweet) => {
-                            if (tweet.attachments) {
-                                const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
-                                if (matchMedia) {
-                                    const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
-                                    return { ...tweet, ...mediaObj };
-                                } 
-                            } else return tweet;
-                        });
-                    }
-
-                    function addUserObj(array, obj) {
-                        for (let i = 0; i < array.length; i++) {
-                            array[i].user = obj;
-                        }
-                    }
-            
                     let tweetsWithMedia = mergeMedia(tweets, media); 
                     let fullResponse = addUserObj(tweetsWithMedia, user);
                     res.send(tweetsWithMedia); 
@@ -184,14 +137,6 @@ app.get("/api/searchTopics", async(req, res) => {
                 tweets.push(response.data.data[i]);
                 users.push(response.data.includes.users[i]);
             }
-                
-            function mergeArrays(arr1, arr2) {
-                return arr1.map((item, i) => {
-                    if (item.author_id === arr2[i].id) {
-                        return Object.assign({}, item, arr2[i]);
-                    }
-                });
-            } 
             const mergedArray = mergeArrays(tweets, users);
             res.send(mergedArray);
         })
@@ -200,4 +145,37 @@ app.get("/api/searchTopics", async(req, res) => {
             res.send({ error: error });
         });                
 })
+
+//idea to wrap axios request in function 
+function makeRequest(data) {
+    return axios.get(data);
+}
     
+//Helper functions
+
+function mergeMedia(tweetData, mediaData) {
+    return tweetData.map((tweet) => {
+        if (tweet.attachments) {
+            const matchMedia = mediaData.map((media) => media.media_key).includes(tweet.attachments.media_keys[0]);
+            if (matchMedia) {
+                const mediaObj = mediaData.find((media) => media.media_key === tweet.attachments.media_keys[0]);
+                return { ...tweet, ...mediaObj };
+            } 
+        } else return tweet;
+    });
+}
+
+function mergeArrays(arr1, arr2) {
+    return arr1.map((item, i) => {
+        if (item.author_id === arr2[i].id) {
+            return Object.assign({}, item, arr2[i]);
+        }
+    });
+} 
+
+function addUserObj(array, obj) {
+    for (let i = 0; i < array.length; i++) {
+        array[i].user = obj;
+    }
+}
+

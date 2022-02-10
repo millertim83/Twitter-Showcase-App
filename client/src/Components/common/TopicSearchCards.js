@@ -1,8 +1,8 @@
 import React from "react";
-import "./TweetCard.css";
-import check from "../images/check.png";
-import heart from "../images/heart.png";
-import retweet from "../images/retweet.png";
+import "Components/common/TweetCard.css";
+import check from "images/check.png";
+import heart from "images/heart.png";
+import retweet from "images/retweet.png";
 
 export default function topicSearchCards({ show, onClose, topicSearchTweets, tweet }) {
     function formatTweetTime(createdAt) {

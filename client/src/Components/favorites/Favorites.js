@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Favorites.css";
-import UserCard from "./UserCard";
-import FavoritesModal from "./FavoritesModal";
+import "Components/favorites/Favorites.css";
+import UserCard from "Components/favorites/UserCard.js";
+import FavoritesModal from "Components/favorites/FavoritesModal.js";
 import axios from "axios";
 
 function Favorites() {    

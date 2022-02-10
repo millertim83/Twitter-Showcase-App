@@ -1,6 +1,6 @@
 import React from "react";
-import "./Home.css";
-import frustrated from "../images/frustrated.jpg";
+import "Components/home/Home.css";
+import frustrated from "images/frustrated.jpg";
 
 function Home() {
     return(

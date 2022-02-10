@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
-import "./Search.css";
-import TweetCard from "./TweetCard.js";
-import TopicSearchCards from "./TopicSearchCards";
-import CloseTweetsButton from "./CloseTweetsButton";
+import "Components/search/Search.css";
+import TweetCard from "Components/common/TweetCard.js";
+import TopicSearchCards from "Components/common/TopicSearchCards";
+import CloseTweetsButton from "Components/common/CloseTweetsButton";
 
 function Search()  {
     const [searchTerm, setSearchTerm] = useState("");

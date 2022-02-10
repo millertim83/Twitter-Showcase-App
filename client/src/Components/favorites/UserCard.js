@@ -1,8 +1,8 @@
 import React from "react";
-import "./UserCard.css";
-import check from "../images/check.png";
-import pin from "../images/pin.png";
-import calendar from "../images/calendar.png";
+import "Components/favorites/UserCard.css";
+import check from "images/check.png";
+import pin from "images/pin.png";
+import calendar from "images/calendar.png";
 
 export default function UserCard({userInfo})  {
     let userData = userInfo;

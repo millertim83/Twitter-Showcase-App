@@ -1,10 +1,14 @@
 import React from "react";
-import "./TweetCard.css";
-import check from "../images/check.png";
-import heart from "../images/heart.png";
-import retweet from "../images/retweet.png";
+import "Components/favorites/FavoritesModal.css";
+import check from "images/check.png";
+import heart from "images/heart.png";
+import retweet from "images/retweet.png";
 
-export default function TweetCard({ show, tweetResults, tweet }) {
+
+export default function FavoritesModal ({show, onClose, tweetTimeline, randomIndex, userIndex }) {
+    let tweet = tweetTimeline;
+    
+
     function formatTweetTime(createdAt) {
         let dateArray = createdAt.split("-");
         let year = dateArray[0];
@@ -108,58 +112,53 @@ export default function TweetCard({ show, tweetResults, tweet }) {
         let displayedTime = (`${month} ${day} ${year} ${hour}:${minute}:${seconds}EST`);
         return displayedTime;
     }
-    
+
     if (!show) {
         return null;
     }
-    
+
     return (
-        tweetResults && (
-            <div>
-                <div id="tweet-modal" className="container  mb-2" key={tweet.id}>
-                    <div className="row">
-                        <div className="col-2">
-                            <img id="profile-pic"
-                            className="rounded-circle responsive-img"
-                            src={tweet.user.profile_image_url}
-                            alt={tweet.user.name}>
-                            </img>
-                        </div>
-                        <div id="name" className="col-3">
-                            <p>{tweet.user.name} {tweet.user.verified === true ? <img id="check" src={check} alt="verified"/> : null}</p>
-                        </div>  
-                        <div className="col-3">
-                            <p id="username">{ `@${tweet.user.username}` }</p>
-                        </div>
-                        <div className="col-4 mt-2">
-                            <p id="date">{formatTweetTime(tweet.created_at)}</p>
-                        </div>
+        tweetTimeline && randomIndex && (
+            <div id="favorites-modal" className="container justify-content-center border border-dark rounded-1 mt-0">
+                <div className="row">
+                    <div className="col-2">
+                        <img id="profile-pic"
+                           className="rounded-circle responsive-img"
+                            src={tweet[userIndex].profile_image_url}
+                            alt={tweet[userIndex].name}>
+                        </img>
                     </div>
-                    <div className="row">
-                        <div className="col-12 text-start">
-                            <p className="text-sm-start">{tweet.text}</p>
-                        </div>
+                    <div className="col-4">
+                        <p id="name" className="mb-0">{tweet[userIndex].name} {tweet[userIndex].verified === true ? <img id="check" src={check} alt="verified"/> : null}</p>
+                        <p id="username" className="mt-1">{ `@${tweet[userIndex].username}` }</p>
+                    </div>  
+                    <div className="col-2"></div>
+                    <div className="col-4">
+                        <p id="date">{formatTweetTime(tweet[randomIndex].created_at)}</p>
                     </div>
-                    <div className="row">
-                        <div className="col-6">
-                            <p>{<img id="heart" src={heart} alt="likes:" />} {tweet.public_metrics.like_count}</p>
-                        </div>
-                        <div className="col-6">
-                            <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet.public_metrics.retweet_count}</p>
-                        </div>
+                </div>
+                <div className="row">
+                    <div className="col-2"></div>
+                    <div className="col-10 text-start">
+                        <p id="tweet-text" className="text-sm-start">{tweet[randomIndex].text}</p>
                     </div>
-                    <div className="row">
-                        <p>{tweet.type === "video" ? <img id="video-preview-img" src={tweet.preview_image_url} alt="video preview"/> : null}</p>
-                        <p>{tweet.type === "photo" ? <img id="photo-preview" src={tweet.url} alt="photo"/> : null}</p>
+                </div>
+            
+                <div className="row">
+                    <div className="col-6">
+                        <p>{<img id="heart" src={heart} alt="likes:" />} {tweet[randomIndex].public_metrics.like_count}</p>
                     </div>
-                    
-                </div>  
-            </div> 
-        )  
-    );
+                    <div className="col-6">
+                        <p>{<img id="retweet" src={retweet} alt="retweets:" />} {tweet[randomIndex].public_metrics.retweet_count}</p>
+                    </div>
+                </div>
+                <div className="row">
+                    <p>{tweet[randomIndex].type === "video" ? <img id="video-preview-img" src={tweet[randomIndex].preview_image_url} alt="video preview"/> : null}</p>
+                    <p>{tweet[randomIndex].type === "photo" ? <img id="photo-preview" src={tweet[randomIndex].url} alt="embedded photo"/> : null}</p>
+                </div>
+        
+                <button id = "close-btn" className="btn" onClick={onClose}>Close</button>
+            </div>
+        )
+    )
 }
-
-
-
-
-    

@@ -1,5 +1,5 @@
 import React from "react";
-import "./CloseTweetsButton.css";
+import "Components/common/CloseTweetsButton.css";
 
 export default function CloseTweetsButton( {show, closeTweets } ) {
     
